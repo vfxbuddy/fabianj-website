@@ -37,7 +37,7 @@ export function Navbar() {
           scrolled ? "w-[90%] max-w-3xl" : "w-[95%] max-w-4xl"
         )}
       >
-        <nav className="glass-pill flex items-center justify-between px-6 py-3">
+        <nav className="glass-pill backdrop-blur-xl bg-slate-950/50 flex items-center justify-between px-6 py-3 border border-white/10">
           {/* Logo */}
           <Link
             href="/"
