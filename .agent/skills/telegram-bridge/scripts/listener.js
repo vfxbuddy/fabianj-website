@@ -6,6 +6,9 @@ const { execSync } = require('child_process');
 const MAX_FILE_SIZE_MB = 5;
 const EXCLUDED_EXTENSIONS = ['.abc', '.exr', '.mov'];
 
+const REQUESTS_LOG = path.join(__dirname, 'requests.log');
+const RESPONSE_FILE = path.join(__dirname, 'response.txt');
+
 // Load environment variables from .env.local manually
 function loadEnv() {
     const envPath = path.join(process.cwd(), '.env.local');
@@ -149,6 +152,15 @@ async function startPolling() {
                 }
 
                 console.log(`Received authorized request: ${text}`);
+                
+                // --- AI LOGGING ---
+                // Append the request to a log file so Antigravity can 'see' it
+                try {
+                    fs.appendFileSync(REQUESTS_LOG, `[${new Date().toISOString()}] ${text}\n`);
+                } catch (e) {
+                    console.error("Failed to write to requests.log:", e.message);
+                }
+
                 if (text.startsWith('/deploy') || text.startsWith('/push')) {
                     await sendTelegramMessage(userId, "Starting deployment workflow... ⚙️");
                     if (runWorkspaceCheck()) {
@@ -168,6 +180,21 @@ async function startPolling() {
                     // Just acknowledge the relay for normal messages
                     await sendTelegramMessage(userId, "Relayed to Antigravity 🧠... I'm looking into it now.");
                 }
+            }
+
+            // --- AI RESPONSE PING ---
+            // Check if Antigravity wrote a response.txt to send to the user's phone
+            try {
+                if (fs.existsSync(RESPONSE_FILE)) {
+                    const responseText = fs.readFileSync(RESPONSE_FILE, 'utf8').trim();
+                    if (responseText) {
+                        console.log(`Sending AI response to phone: ${responseText}`);
+                        await sendTelegramMessage(AUTHORIZED_USER_ID, responseText);
+                        fs.unlinkSync(RESPONSE_FILE); // Delete after sending
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to process response.txt:", e.message);
             }
         } catch (error) {
             console.error("Polling error:", error);
