@@ -30,7 +30,7 @@ function PosterCard({ title, year, poster }: PosterCardProps) {
         sizes="(max-w-768px) 200px, 300px"
         className="object-cover transition-transform duration-1000 group-hover:scale-110"
       />
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 sm:p-6">
         <h3 className="text-white font-bold text-base sm:text-xl leading-tight drop-shadow-lg">
@@ -42,7 +42,7 @@ function PosterCard({ title, year, poster }: PosterCardProps) {
           </p>
         )}
       </div>
-      
+
       {/* Subtle border shine on hover */}
       <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 transition-colors pointer-events-none rounded-xl" />
     </div>
@@ -80,7 +80,7 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
           100% { transform: translateX(0); }
         }
       `}</style>
-      <div 
+      <div
         className="group/marquee relative w-full py-12"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
@@ -102,18 +102,18 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
 
         {/* Cinematic Atmospheric Overlays */}
         {/* Left Subtle Blur/Grayscale Overlay */}
-        <div 
+        <div
           className="absolute inset-y-0 left-0 w-[30%] z-[20] pointer-events-none backdrop-grayscale backdrop-blur-[2px]"
-          style={{ 
+          style={{
             maskImage: 'linear-gradient(to right, black 40%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to right, black 40%, transparent 100%)'
           }}
         />
-        
+
         {/* Right Subtle Blur/Grayscale Overlay */}
-        <div 
+        <div
           className="absolute inset-y-0 right-0 w-[30%] z-[20] pointer-events-none backdrop-grayscale backdrop-blur-[2px]"
-          style={{ 
+          style={{
             maskImage: 'linear-gradient(to left, black 40%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 100%)'
           }}
@@ -132,14 +132,14 @@ export default function GalleryPage() {
 
       <div className="w-full relative z-10">
         <motion.div initial="hidden" animate="visible">
-          
+
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div variants={fadeUp} className="text-center mb-20">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
                 <span className="text-gradient-accent">Gallery</span>
               </h1>
               <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-                Film, Television and Other Credits across major studio productions
+                VFX Credits for Screens Big, Small, and Everything In Between
               </p>
             </motion.div>
 
@@ -184,8 +184,8 @@ export default function GalleryPage() {
               <div className="h-px flex-1 bg-gradient-to-r from-teal-500/30 to-transparent" />
             </motion.div>
 
-            <motion.div 
-              variants={fadeUp} 
+            <motion.div
+              variants={fadeUp}
               className="group relative mx-auto w-full max-w-4xl rounded-3xl overflow-hidden glass-panel border border-white/5 shadow-2xl"
             >
               <div className="aspect-video relative">
@@ -197,7 +197,7 @@ export default function GalleryPage() {
                   title={galleryData.freelance[0].title}
                 />
               </div>
-              
+
               <div className="p-8 md:p-12 bg-slate-950/80 backdrop-blur-md border-t border-white/5 relative">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                   <div className="flex flex-col gap-4">
@@ -205,11 +205,11 @@ export default function GalleryPage() {
                       <h3 className="text-3xl font-bold text-white mb-2">{galleryData.freelance[0].title}</h3>
                       <p className="text-teal-400 font-semibold tracking-widest uppercase text-xs">{galleryData.freelance[0].type}</p>
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-2 mt-2">
                       {galleryData.freelance[0].services?.map((service) => (
-                        <span 
-                          key={service} 
+                        <span
+                          key={service}
                           className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-slate-300 uppercase tracking-tighter"
                         >
                           {service}
@@ -227,7 +227,7 @@ export default function GalleryPage() {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Subtle bottom glow */}
                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-teal-500/20 to-transparent blur-md" />
               </div>
