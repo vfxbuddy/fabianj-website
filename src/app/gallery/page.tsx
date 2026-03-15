@@ -139,7 +139,7 @@ export default function GalleryPage() {
                 <span className="text-gradient-accent">Gallery</span>
               </h1>
               <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-                Infinite ribbons of official credits and visual contribution across major productions.
+                Film, Television and Other Credits across major studio productions
               </p>
             </motion.div>
 
