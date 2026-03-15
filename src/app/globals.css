@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+/* ==============================
+   DARK CINEMA / FRAMER AESTHETIC
+   Premium Dark Theme & Gradients
+   ============================== */
+
+@theme inline {
+  /* Deep Dark Palette - Framer Style */
+  --color-slate-950: #050505;
+  --color-slate-900: #0a0a0a;
+  --color-slate-800: #171717;
+  --color-slate-700: #262626;
+  --color-slate-600: #404040;
+  --color-slate-500: #525252;
+  --color-slate-400: #a3a3a3;
+  --color-slate-300: #d4d4d4;
+  --color-slate-200: #e5e5e5;
+  --color-slate-100: #f5f5f5;
+  --color-slate-50:  #fafafa;
+
+  /* Accent — Teal / Cyan (Current Brand) */
+  --color-teal-500: #14b8a6;
+  --color-teal-400: #2dd4bf;
+  --color-cyan-400: #22d3ee;
+  
+  /* Accent — Violet (XR / Secondary) */
+  --color-violet-500: #8b5cf6;
+  --color-violet-400: #a78bfa;
+
+  /* Semantic Colors */
+  --color-background: #050505; /* Deep rich black */
+  --color-foreground: #fafafa;
+  --color-muted: #a3a3a3;
+  --color-surface: #0a0a0a;    /* Elevated surface */
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* Typography */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-breathe: breathe 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Keyframes */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.05); opacity: 0.6; }
+}
+
+/* ==============================
+   BASE STYLES
+   ============================== */
+
+/* Tailwind v4 Preflight handles normalization — no manual * reset needed */
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-background);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-700);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-500);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-teal-500);
+  color: #fff;
+}
+
+/* ==============================
+   UTILITY CLASSES (Framer Premium Style)
+   ============================== */
+
+/* Gradient Text Premium */
+.text-gradient-premium {
+  background: linear-gradient(135deg, #fff 30%, var(--color-slate-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--color-teal-400), var(--color-cyan-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Solid Gradient Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-teal-500), #0d9488);
+  box-shadow: 0 4px 14px 0 rgba(20, 184, 166, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+/* Glass Panels & Bento Boxes */
+.glass-panel {
+  background: rgba(23, 23, 23, 0.4); /* slate-800 with opacity */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Spotlight for Bento Cards (will be controlled via React) */
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: transparent;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Accent Top Border Beam for Cards */
+.card-beam {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-teal-500), transparent);
+  opacity: 0.8;
+  filter: blur(1px);
+}
+
+/* Ambient Background Glows */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.glow-teal {
+  background: rgba(45, 212, 191, 0.15); 
+}
+
+.glow-violet {
+  background: rgba(139, 92, 246, 0.15);
+}
+
+/* Floating Glass Pill Nav */
+.glass-pill {
+  background: rgba(10, 10, 10, 0.65); /* slate-900 deep */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  border-radius: 9999px;
+}
+
+/* ==============================
+   B&W → COLOR HOVER EFFECT
+   Premium grayscale transition
+   ============================== */
+
+.img-bw-hover {
+  filter: grayscale(100%) brightness(0.7);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-bw-hover:hover,
+.group:hover .img-bw-hover {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Faint B&W background variant — very subtle */
+.img-bw-faint {
+  filter: grayscale(100%) brightness(0.3) contrast(0.8);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .img-bw-faint {
+  filter: grayscale(50%) brightness(0.4) contrast(0.9);
+}
+
+/* ==============================
+   FILM SCRATCH / NAV GLINT EFFECT
+   Cinematic teal sweep on active nav
+   ============================== */
+
+.nav-film-scratch {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav-film-scratch::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  bottom: -50%;
+  width: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(45, 212, 191, 0.1) 20%,
+    rgba(45, 212, 191, 0.8) 50%,
+    rgba(45, 212, 191, 0.1) 80%,
+    transparent
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+}
+
+.nav-film-scratch-violet {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav-film-scratch-violet::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  bottom: -50%;
+  width: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.1) 20%,
+    rgba(139, 92, 246, 0.8) 50%,
+    rgba(139, 92, 246, 0.1) 80%,
+    transparent
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+}
+
+.nav-film-scratch::before,
+.nav-film-scratch-violet::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  bottom: -50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(25deg);
+  opacity: 0;
+}
+
+/* Play once when element mounts (active) */
+.animate-scratch-once::after {
+  animation: film-glint 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.animate-scratch-once::before {
+  animation: film-glint 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s forwards;
+}
+
+/* Play/replay when hovered */
+.group:hover .nav-film-scratch::after,
+.group:hover .nav-film-scratch-violet::after {
+  animation: film-glint-hover 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.group:hover .nav-film-scratch::before,
+.group:hover .nav-film-scratch-violet::before {
+  animation: film-glint-hover 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s forwards;
+}
+
+@keyframes film-glint {
+  0% { left: -50%; opacity: 0; }
+  10% { opacity: 1; }
+  100% { left: 150%; opacity: 0; }
+}
+
+@keyframes film-glint-hover {
+  0% { left: -50%; opacity: 0; }
+  10% { opacity: 1; }
+  100% { left: 150%; opacity: 0; }
+}

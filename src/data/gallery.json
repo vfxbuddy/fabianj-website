@@ -1,0 +1,197 @@
+{
+  "films": [
+    {
+      "title": "The Wizard of Oz at the Sphere",
+      "year": "2024",
+      "poster": "/gallery/wizard_of_oz_sphere.jpg"
+    },
+    {
+      "title": "Flight Risk",
+      "year": "2025",
+      "poster": "/gallery/flight_risk.jpg"
+    },
+    {
+      "title": "Shadow Force",
+      "year": "2025",
+      "poster": "/gallery/shadow_force_poster.jpg"
+    },
+    {
+      "title": "Fear",
+      "year": "2023",
+      "poster": "/gallery/fear.jpg"
+    },
+    {
+      "title": "End of the Road",
+      "year": "2022",
+      "poster": "/gallery/end_of_the_road.jpg"
+    },
+    {
+      "title": "Boss Level",
+      "year": "2020",
+      "poster": "/gallery/boss_level.jpg"
+    },
+    {
+      "title": "Jay and Silent Bob Reboot",
+      "year": "2019",
+      "poster": "/gallery/jay_and_silent_bob_reboot.jpg"
+    },
+    {
+      "title": "Doctor Strange",
+      "year": "2016",
+      "poster": "/gallery/doctor_strange.jpg"
+    },
+    {
+      "title": "Alien: Covenant",
+      "year": "2017",
+      "poster": "/gallery/alien__covenant.jpg"
+    },
+    {
+      "title": "I Saw the Light",
+      "year": "2015",
+      "poster": "/gallery/i_saw_the_light.jpg"
+    },
+    {
+      "title": "Avengers: Age of Ultron",
+      "year": "2015",
+      "poster": "/gallery/avengers__age_of_ultron.jpg"
+    },
+    {
+      "title": "Divergent",
+      "year": "2014",
+      "poster": "/gallery/divergent.jpg"
+    },
+    {
+      "title": "Saving Mr. Banks",
+      "year": "2013",
+      "poster": "/gallery/saving_mr__banks.jpg"
+    },
+    {
+      "title": "Beautiful Creatures",
+      "year": "2013",
+      "poster": "/gallery/beautiful_creatures.jpg"
+    },
+    {
+      "title": "The Conjuring",
+      "year": "2013",
+      "poster": "/gallery/the_conjuring.jpg"
+    },
+    {
+      "title": "Gangster Squad",
+      "year": "2013",
+      "poster": "/gallery/gangster_squad.jpg"
+    },
+    {
+      "title": "Nurse 3D",
+      "year": "2013",
+      "poster": null
+    },
+    {
+      "title": "Men In Black 3",
+      "year": "2012",
+      "poster": null
+    }
+  ],
+  "tv": [
+    {
+      "title": "Bad Monkey",
+      "poster": "/gallery/bad_monkey.jpg"
+    },
+    {
+      "title": "SEAL Team",
+      "poster": "/gallery/seal_team.jpg"
+    },
+    {
+      "title": "Walker: Independence",
+      "poster": "/gallery/walker__independence.jpg"
+    },
+    {
+      "title": "Batwoman",
+      "poster": "/gallery/batwoman.jpg"
+    },
+    {
+      "title": "Supergirl",
+      "poster": "/gallery/supergirl.jpg"
+    },
+    {
+      "title": "The Winchesters",
+      "poster": "/gallery/the_winchesters.jpg"
+    },
+    {
+      "title": "His Dark Materials",
+      "poster": "/gallery/his_dark_materials.jpg"
+    },
+    {
+      "title": "Black Lightning",
+      "poster": "/gallery/black_lightning.jpg"
+    },
+    {
+      "title": "Doom Patrol",
+      "poster": "/gallery/doom_patrol.jpg"
+    },
+    {
+      "title": "Mythic Quest",
+      "poster": "/gallery/mythic_quest.jpg"
+    },
+    {
+      "title": "Legends of Tomorrow",
+      "poster": "/gallery/legends_of_tomorrow.jpg"
+    },
+    {
+      "title": "The Flash",
+      "poster": "/gallery/the_flash.jpg"
+    },
+    {
+      "title": "Riverdale",
+      "poster": "/gallery/riverdale.jpg"
+    },
+    {
+      "title": "Crazy Ex-Girlfriend",
+      "poster": "/gallery/crazy_ex_girlfriend.jpg"
+    },
+    {
+      "title": "The Get Down",
+      "poster": "/gallery/the_get_down.jpg"
+    },
+    {
+      "title": "Person of Interest",
+      "poster": "/gallery/person_of_interest.jpg"
+    },
+    {
+      "title": "Fringe",
+      "poster": "/gallery/fringe.jpg"
+    },
+    {
+      "title": "Revolution",
+      "poster": "/gallery/revolution.jpg"
+    },
+    {
+      "title": "Almost Human",
+      "poster": "/gallery/almost_human.jpg"
+    },
+    {
+      "title": "Allegiance",
+      "poster": "/gallery/allegiance.jpg"
+    },
+    {
+      "title": "CSI: Cyber",
+      "poster": "/gallery/csi__cyber.jpg"
+    },
+    {
+      "title": "You",
+      "poster": "/gallery/you.jpg"
+    },
+    {
+      "title": "Gotham",
+      "poster": "/gallery/gotham.jpg"
+    }
+  ],
+  "freelance": [
+    {
+      "title": "The Clawcade",
+      "type": "Recap of the Grand Opening",
+      "vimeoId": "1003289299",
+      "services": ["Video", "Aerial Photography", "Gaussian Captures", "Editing", "Graphics"],
+      "description": "A recap of the grand opening of The Clawcade, showcasing high-energy arcade production and immersive venue coverage."
+    }
+  ]
+}
