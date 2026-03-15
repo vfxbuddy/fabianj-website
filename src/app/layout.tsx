@@ -30,18 +30,27 @@ export const metadata: Metadata = {
   authors: [{ name: "Fabian Jimenez" }],
   creator: "Fabian Jimenez",
   openGraph: {
-    title: "Fabian Jimenez — VFX Compositing Supervisor",
-    description: "Transforming VFX with Creative Leadership!",
+    title: "Fabian Jimenez — VFX Supervisor & XR Designer",
+    description: "Transforming VFX with Creative Leadership & Spatial Design.",
     type: "website",
     url: "https://fabianj.com",
     siteName: "Fabian Jimenez Portfolio",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Fabian Jimenez Portfolio – VFX & XR Spatial Design",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fabian Jimenez — VFX Compositing Supervisor",
-    description: "Transforming VFX with Creative Leadership!",
-    creator: "@vfxbuddy", // Assuming based on repo name
+    title: "Fabian Jimenez — VFX Supervisor & XR Designer",
+    description: "Transforming VFX with Creative Leadership & Spatial Design.",
+    creator: "@vfxbuddy",
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/",
