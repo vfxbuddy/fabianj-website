@@ -6,7 +6,6 @@ import galleryData from "@/data/gallery.json";
 import { useEffect, useState } from "react";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Clapperboard } from "lucide-react";
-import { WireframeScroll } from "@/components/ui/WireframeScroll";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -127,11 +126,9 @@ export default function GalleryPage() {
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
 
-      <WireframeScroll />
-
       <div className="w-full relative z-10">
-        <section className="min-h-[85vh] flex flex-col items-center justify-center relative">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center mb-20">
             <motion.div variants={fadeUp} className="mb-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs uppercase tracking-widest">
                 <Clapperboard size={14} /> Film • Television
@@ -143,12 +140,13 @@ export default function GalleryPage() {
             <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
               VFX Credits for Screens Big, Small, and Everything In Between
             </p>
+            
+            {/* Original Scroll Placement */}
+            <div className="relative h-24 mt-12">
+              <ScrollIndicator />
+            </div>
           </motion.div>
 
-          <ScrollIndicator />
-        </section>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             {/* Video Player - Vimeo Embed */}
             <motion.div variants={fadeUp} className="mb-32 mx-auto w-full max-w-5xl aspect-video rounded-3xl overflow-hidden glass-panel relative border border-white/5 shadow-2xl">
