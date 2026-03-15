@@ -1,1 +1,1 @@
-/deploy
+Lets add the word “Production” back before the word “Gallery” and also keep the font in its original white color
