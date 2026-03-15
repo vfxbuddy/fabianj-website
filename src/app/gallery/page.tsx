@@ -93,8 +93,6 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
             animation: `${animName} ${speed}s linear infinite`,
             animationPlayState: 'running',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.animationPlayState = 'paused'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.animationPlayState = 'running'; }}
         >
           {/* Render items twice for seamless loop */}
           {[...validItems, ...validItems].map((item, i) => (
