@@ -1,1 +1,1 @@
-Lets add the word “Production” back before the word “Gallery” and also keep the font in its original white color
+In home page let’s give a the “Industry Experience” button a nice animation on over state

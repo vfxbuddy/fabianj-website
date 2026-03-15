@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Play, Sparkles, X } from "lucide-react";
+import { Play, Sparkles, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { TextReveal } from "@/components/ui/TextReveal";
@@ -239,9 +239,23 @@ export function Hero() {
               </button>
               <Link
                 href="/resume"
-                className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-secondary px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10 active:scale-95 border-slate-700 hover:border-slate-500"
+                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-slate-700 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-slate-500 overflow-hidden"
               >
-                Industry Experience
+                {/* Background Hover Glow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-teal-500/10 via-teal-500/20 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  layoutId="buttonGlow"
+                />
+                
+                {/* Shine Sweep Overlay */}
+                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                  <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] group-hover:left-[150%] transition-all duration-1000 ease-in-out" />
+                </div>
+
+                <span className="relative z-10 flex items-center gap-2">
+                  Industry Experience
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
               </Link>
             </motion.div>
           </div>
