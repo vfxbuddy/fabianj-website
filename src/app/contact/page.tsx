@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 export default function ContactPage() {
   return (
@@ -82,6 +83,7 @@ export default function ContactPage() {
           </motion.div>
 
         </div>
+        <ScrollIndicator />
       </div>
     </div>
   );

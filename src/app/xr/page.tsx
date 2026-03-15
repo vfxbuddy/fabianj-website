@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { Box, Trophy, ArrowUpRight, Play } from "lucide-react";
 import { NotionModal } from "@/components/ui/NotionModal";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 const xrProjects = [
   {
@@ -78,6 +79,9 @@ export default function XRPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Welcome to my XR portfolio. I create and prototype immersive augmented and mixed reality experiences bridging the physical and digital.
             </p>
+            <div className="relative h-24 mt-12">
+              <ScrollIndicator />
+            </div>
           </motion.div>
 
           {/* Showreel - Vimeo Embed */}

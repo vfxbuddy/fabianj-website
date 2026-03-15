@@ -5,6 +5,7 @@ import { Download, Briefcase, Award, MonitorPlay, Code, Sparkles } from "lucide-
 import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 const PDF_URL = "https://img1.wsimg.com/blobby/go/e218639b-d468-469f-ad19-5f7fec74d0ba/Fabian_Jimenez_Compositor_Resume_2025-3088340.pdf";
 
@@ -149,6 +150,10 @@ export default function ResumePage() {
             <Download size={18} />
             Download Original PDF
           </Link>
+          
+          <div className="relative h-24 mt-12 mb-12">
+            <ScrollIndicator />
+          </div>
         </motion.div>
 
         {/* Current Highlight — Refuge VFX */}

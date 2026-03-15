@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -260,6 +261,9 @@ export function Hero() {
             </motion.div>
           </div>
         </motion.div>
+
+        {/* Scroll Hint */}
+        <ScrollIndicator />
       </section>
 
       {/* Showreel Modal Overlay */}

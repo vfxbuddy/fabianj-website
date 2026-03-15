@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import galleryData from "@/data/gallery.json";
 import { useEffect, useState } from "react";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -142,6 +143,11 @@ export default function GalleryPage() {
                 VFX Credits for Screens Big, Small, and Everything In Between
               </p>
             </motion.div>
+
+            {/* Scroll Hint */}
+            <div className="relative h-24 mb-12">
+              <ScrollIndicator />
+            </div>
 
             {/* Video Player - Vimeo Embed */}
             <motion.div variants={fadeUp} className="mb-32 mx-auto w-full max-w-5xl aspect-video rounded-3xl overflow-hidden glass-panel relative border border-white/5 shadow-2xl">
