@@ -212,11 +212,11 @@ body {
 
 /* Floating Glass Pill Nav */
 .glass-pill {
-  background: rgba(10, 10, 10, 0.65); /* slate-900 deep */
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  background: rgba(5, 5, 5, 0.5); /* Lighter opacity for better blur visibility */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   border-radius: 9999px;
 }
 
