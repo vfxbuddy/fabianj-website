@@ -19,19 +19,36 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fabian Jimenez — Compositing Supervisor & XR Spatial Designer",
+  metadataBase: new URL("https://fabianj-website.vercel.app"),
+  title: {
+    default: "Fabian Jimenez — Compositing Supervisor & XR Spatial Designer",
+    template: "%s | Fabian Jimenez",
+  },
   description:
     "Transforming VFX with Creative Leadership. Senior Compositing Supervisor with credits on Dr. Strange, Avengers, Supergirl, Batwoman, and more.",
+  keywords: ["VFX", "Compositing", "Supervisor", "XR", "Spatial Design", "Mixed Reality", "Fabian Jimenez"],
+  authors: [{ name: "Fabian Jimenez" }],
+  creator: "Fabian Jimenez",
   openGraph: {
     title: "Fabian Jimenez — VFX Compositing Supervisor",
     description: "Transforming VFX with Creative Leadership!",
     type: "website",
-    url: "https://www.fabianj.com",
+    url: "https://fabianj-website.vercel.app",
+    siteName: "Fabian Jimenez Portfolio",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fabian Jimenez — VFX Compositing Supervisor",
     description: "Transforming VFX with Creative Leadership!",
+    creator: "@vfxbuddy", // Assuming based on repo name
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
