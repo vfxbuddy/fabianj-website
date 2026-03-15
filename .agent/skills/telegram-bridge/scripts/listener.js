@@ -28,6 +28,8 @@ loadEnv();
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const AUTHORIZED_USER_ID = process.env.AUTHORIZED_USER_ID;
+const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
+const VERCEL_PROJECT_ID = process.env.VERCEL_PROJECT_ID;
 
 if (!TELEGRAM_TOKEN || !AUTHORIZED_USER_ID) {
     console.error("Error: TELEGRAM_TOKEN or AUTHORIZED_USER_ID not set in .env.local");
@@ -46,6 +48,43 @@ async function sendTelegramMessage(chatId, text) {
     } catch (error) {
         console.error("Error sending message:", error);
     }
+}
+
+async function checkVercelDeployment() {
+    if (!VERCEL_TOKEN || !VERCEL_PROJECT_ID) return null;
+    try {
+        const response = await fetch(`https://api.vercel.com/v6/deployments?projectId=${VERCEL_PROJECT_ID}&limit=1`, {
+            headers: { Authorization: `Bearer ${VERCEL_TOKEN}` }
+        });
+        const data = await response.json();
+        return data.deployments && data.deployments[0];
+    } catch (error) {
+        console.error("Error checking Vercel:", error);
+        return null;
+    }
+}
+
+async function watchVercelDeployment(chatId) {
+    console.log("Monitoring Vercel deployment...");
+    const startTime = Date.now();
+    let lastUrl = "";
+
+    // Poll every 10 seconds for up to 5 minutes
+    while (Date.now() - startTime < 5 * 60 * 1000) {
+        const deploy = await checkVercelDeployment();
+        if (deploy) {
+            lastUrl = `https://${deploy.url}`;
+            if (deploy.readyState === 'READY') {
+                await sendTelegramMessage(chatId, `✅ LIVE! Your changes are now public at: ${lastUrl}`);
+                return;
+            } else if (deploy.readyState === 'ERROR') {
+                await sendTelegramMessage(chatId, `❌ Vercel build failed. Check your Vercel dashboard for logs.`);
+                return;
+            }
+        }
+        await new Promise(r => setTimeout(r, 10000));
+    }
+    await sendTelegramMessage(chatId, "⚠️ Vercel is taking a while to build. Check back in a minute!");
 }
 
 function runWorkspaceCheck() {
@@ -111,11 +150,12 @@ async function startPolling() {
 
                 console.log(`Received authorized request: ${text}`);
                 if (text.startsWith('/deploy') || text.startsWith('/push')) {
-                    await sendTelegramMessage(userId, "Starting deployment... 🚀");
+                    await sendTelegramMessage(userId, "Starting deployment workflow... ⚙️");
                     if (runWorkspaceCheck()) {
                         const result = gitPushUpdate();
                         if (result === true) {
-                            await sendTelegramMessage(userId, "✅ Deployment triggered! Vercel is building your changes.");
+                            await sendTelegramMessage(userId, "🚀 Code pushed to GitHub. Watching Vercel for build completion...");
+                            watchVercelDeployment(userId); // Start monitoring in background
                         } else if (result === "no_changes") {
                             await sendTelegramMessage(userId, "ℹ️ No changes detected to deploy.");
                         } else {
