@@ -107,7 +107,23 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
             </div>
 
             {/* Content */}
-            {/* Content */}
+            <style jsx global>{`
+              .notion-container .notion {
+                background-color: transparent !important;
+              }
+              .notion-container .notion-page {
+                background-color: transparent !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+              }
+              .notion-container .notion-full-page {
+                background-color: transparent !important;
+              }
+              /* Ensure text is readable */
+              .notion-container .notion-header {
+                display: none !important;
+              }
+            `}</style>
             <div 
               className="flex-1 overflow-y-auto notion-container" 
               style={{ background: "radial-gradient(circle at top, #110022 0%, #000000 100%)" }}
