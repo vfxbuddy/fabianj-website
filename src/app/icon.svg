@@ -1,16 +1,35 @@
 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Simplified Background Grid -->
-  <circle cx="6" cy="6" r="1" fill="#2dd4bf" opacity="0.4" />
-  <circle cx="18" cy="6" r="1" fill="#2dd4bf" opacity="0.4" />
-  <circle cx="6" cy="18" r="1" fill="#2dd4bf" opacity="0.4" />
-  <circle cx="18" cy="18" r="1" fill="#2dd4bf" opacity="0.4" />
-
-  <!-- Monogram FJ in Jimenez Teal -->
-  <!-- F -->
-  <path d="M6 6V18" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
-  <path d="M6 6H14" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
-  <path d="M6 12H12" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+  <!-- 1. Tracking Grid -->
+  <circle cx="6" cy="6" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="10" cy="6" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="14" cy="6" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="18" cy="6" r="0.6" fill="#2dd4bf" opacity="0.3" />
   
-  <!-- J -->
-  <path d="M18 6V16C18 17.1 17.1 18 16 18H12" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="6" cy="10" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="10" cy="10" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="14" cy="10" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="18" cy="10" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  
+  <circle cx="6" cy="14" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="10" cy="14" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="14" cy="14" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="18" cy="14" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  
+  <circle cx="6" cy="18" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="10" cy="18" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="14" cy="18" r="0.6" fill="#2dd4bf" opacity="0.3" />
+  <circle cx="18" cy="18" r="0.6" fill="#2dd4bf" opacity="0.3" />
+
+  <!-- 2. Composite Layers -->
+  <rect x="8" y="8" width="12" height="12" rx="1" stroke="#2dd4bf" stroke-width="0.8" opacity="0.2" />
+  <rect x="4" y="4" width="12" height="12" rx="1" stroke="#2dd4bf" stroke-width="1.2" opacity="0.3" />
+
+  <!-- 3. Monogram FJ (High Contrast) -->
+  <path d="M6 6V18" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M6 6H14" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M6 12H12" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M18 6V16C18 17.1 17.1 18 16 18H12" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" />
+
+  <!-- 4. Focus HUD Details -->
+  <path d="M12 2V4M12 20V22M2 12H4M20 12H22" stroke="#2dd4bf" stroke-width="0.7" opacity="0.5" />
 </svg>
