@@ -65,12 +65,10 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
 
   if (validItems.length === 0) return null;
 
-  // CSS keyframe name based on direction
   const animName = direction === "left" ? "marquee-left" : "marquee-right";
 
   return (
     <>
-      {/* Inject keyframes once */}
       <style jsx>{`
         @keyframes marquee-left {
           0% { transform: translateX(0); }
@@ -95,14 +93,11 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
             animationPlayState: 'running',
           }}
         >
-          {/* Render items twice for seamless loop */}
           {[...validItems, ...validItems].map((item, i) => (
             <PosterCard key={`${item.title}-${i}`} {...item} />
           ))}
         </div>
 
-        {/* Cinematic Atmospheric Overlays */}
-        {/* Left Subtle Blur/Grayscale Overlay */}
         <div
           className="absolute inset-y-0 left-0 w-[30%] z-[20] pointer-events-none backdrop-grayscale backdrop-blur-[2px]"
           style={{
@@ -111,7 +106,6 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
           }}
         />
 
-        {/* Right Subtle Blur/Grayscale Overlay */}
         <div
           className="absolute inset-y-0 right-0 w-[30%] z-[20] pointer-events-none backdrop-grayscale backdrop-blur-[2px]"
           style={{
@@ -146,8 +140,7 @@ export default function GalleryPage() {
         </section>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div initial="hidden" animate="visible">
-
+          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             {/* Video Player - Vimeo Embed */}
             <motion.div variants={fadeUp} className="mb-32 mx-auto w-full max-w-5xl aspect-video rounded-3xl overflow-hidden glass-panel relative border border-white/5 shadow-2xl">
               <iframe
@@ -158,88 +151,86 @@ export default function GalleryPage() {
                 title="Fabian Jimenez - Compositing Showreel 2024"
               />
             </motion.div>
-          </div>
 
-          {/* Films Carousel */}
-          <div className="mb-20 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <h2 className="text-3xl font-bold text-white tracking-tight">Feature Films</h2>
+            {/* Films Carousel */}
+            <div className="mb-20 overflow-hidden">
+              <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
+                <motion.div variants={fadeUp} className="flex items-center gap-4">
+                  <h2 className="text-3xl font-bold text-white tracking-tight">Feature Films</h2>
+                  <div className="h-px flex-1 bg-gradient-to-r from-teal-500/30 to-transparent" />
+                </motion.div>
+              </div>
+              <Marquee items={galleryData.films} direction="left" speed={75} />
+            </div>
+
+            {/* TV Carousel */}
+            <div className="mb-32 overflow-hidden">
+              <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
+                <motion.div variants={fadeUp} className="flex items-center gap-4">
+                  <h2 className="text-3xl font-bold text-white tracking-tight">Television</h2>
+                  <div className="h-px flex-1 bg-gradient-to-r from-violet-500/30 to-transparent" />
+                </motion.div>
+              </div>
+              <Marquee items={galleryData.tv} direction="right" speed={100} />
+            </div>
+
+            {/* Recent Freelance Work - The Clawcade */}
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32">
+              <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
+                <h2 className="text-3xl font-bold text-white tracking-tight">Recent Freelance Work</h2>
                 <div className="h-px flex-1 bg-gradient-to-r from-teal-500/30 to-transparent" />
               </motion.div>
-            </div>
-            <Marquee items={galleryData.films} direction="left" speed={75} />
-          </div>
 
-          {/* TV Carousel */}
-          <div className="mb-32 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <h2 className="text-3xl font-bold text-white tracking-tight">Television</h2>
-                <div className="h-px flex-1 bg-gradient-to-r from-violet-500/30 to-transparent" />
-              </motion.div>
-            </div>
-            <Marquee items={galleryData.tv} direction="right" speed={100} />
-          </div>
-
-          {/* Recent Freelance Work - The Clawcade */}
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32">
-            <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-white tracking-tight">Recent Freelance Work</h2>
-              <div className="h-px flex-1 bg-gradient-to-r from-teal-500/30 to-transparent" />
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="group relative mx-auto w-full max-w-4xl rounded-3xl overflow-hidden glass-panel border border-white/5 shadow-2xl"
-            >
-              <div className="aspect-video relative">
-                <iframe
-                  src={`https://player.vimeo.com/video/${galleryData.freelance[0].vimeoId}?title=0&byline=0&portrait=0&badge=0&dnt=1&transparent=1&share=0&pip=0&watch_later=0&vimeo_logo=0&buttons.like=0&buttons.watchlater=0&buttons.share=0`}
-                  className="absolute inset-0 w-full h-full"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  title={galleryData.freelance[0].title}
-                />
-              </div>
-
-              <div className="p-8 md:p-12 bg-slate-950/80 backdrop-blur-md border-t border-white/5 relative">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h3 className="text-3xl font-bold text-white mb-2">{galleryData.freelance[0].title}</h3>
-                      <p className="text-teal-400 font-semibold tracking-widest uppercase text-xs">{galleryData.freelance[0].type}</p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {galleryData.freelance[0].services?.map((service) => (
-                        <span
-                          key={service}
-                          className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-slate-300 uppercase tracking-tighter"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col justify-center">
-                    <p className="text-slate-200 text-lg font-light leading-relaxed mb-4 italic">
-                      "A recap of the grand opening of The Clawcade"
-                    </p>
-                    <p className="text-slate-400 text-sm font-light leading-relaxed">
-                      Comprehensive content production including video coverage, high-altitude aerials, and 3D Gaussian captures to document the high-energy venue launch.
-                    </p>
-                  </div>
+              <motion.div
+                variants={fadeUp}
+                className="group relative mx-auto w-full max-w-4xl rounded-3xl overflow-hidden glass-panel border border-white/5 shadow-2xl"
+              >
+                <div className="aspect-video relative">
+                  <iframe
+                    src={`https://player.vimeo.com/video/${galleryData.freelance[0].vimeoId}?title=0&byline=0&portrait=0&badge=0&dnt=1&transparent=1&share=0&pip=0&watch_later=0&vimeo_logo=0&buttons.like=0&buttons.watchlater=0&buttons.share=0`}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    title={galleryData.freelance[0].title}
+                  />
                 </div>
 
-                {/* Subtle bottom glow */}
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-teal-500/20 to-transparent blur-md" />
-              </div>
-            </motion.div>
-          </div>
+                <div className="p-8 md:p-12 bg-slate-950/80 backdrop-blur-md border-t border-white/5 relative">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div className="flex flex-col gap-4">
+                      <div>
+                        <h3 className="text-3xl font-bold text-white mb-2">{galleryData.freelance[0].title}</h3>
+                        <p className="text-teal-400 font-semibold tracking-widest uppercase text-xs">{galleryData.freelance[0].type}</p>
+                      </div>
 
-        </motion.div>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {galleryData.freelance[0].services?.map((service) => (
+                          <span
+                            key={service}
+                            className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-slate-300 uppercase tracking-tighter"
+                          >
+                            {service}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col justify-center">
+                      <p className="text-slate-200 text-lg font-light leading-relaxed mb-4 italic">
+                        "A recap of the grand opening of The Clawcade"
+                      </p>
+                      <p className="text-slate-400 text-sm font-light leading-relaxed">
+                        Comprehensive content production including video coverage, high-altitude aerials, and 3D Gaussian captures to document the high-energy venue launch.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-teal-500/20 to-transparent blur-md" />
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
