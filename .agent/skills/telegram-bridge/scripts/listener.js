@@ -7,6 +7,7 @@ const MAX_FILE_SIZE_MB = 5;
 const EXCLUDED_EXTENSIONS = ['.abc', '.exr', '.mov'];
 
 const REQUESTS_LOG = path.join(__dirname, 'requests.log');
+const LATEST_REQUEST_FILE = path.join(__dirname, 'LATEST_REQUEST.txt');
 const RESPONSE_FILE = path.join(__dirname, 'response.txt');
 
 // Load environment variables from .env.local manually
@@ -161,8 +162,9 @@ async function startPolling() {
                 // Append the request to a log file so Antigravity can 'see' it
                 try {
                     fs.appendFileSync(REQUESTS_LOG, `[${new Date().toISOString()}] ${text}\n`);
+                    fs.writeFileSync(LATEST_REQUEST_FILE, text); // Overwrite with NEWEST
                 } catch (e) {
-                    console.error("Failed to write to requests.log:", e.message);
+                    console.error("Failed to write to logs:", e.message);
                 }
 
                 if (text.startsWith('/deploy') || text.startsWith('/push')) {
