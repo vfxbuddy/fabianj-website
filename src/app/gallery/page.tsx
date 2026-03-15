@@ -5,6 +5,8 @@ import Image from "next/image";
 import galleryData from "@/data/gallery.json";
 import { useEffect, useState } from "react";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { Clapperboard } from "lucide-react";
+import { WireframeScroll } from "@/components/ui/WireframeScroll";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -125,9 +127,16 @@ export default function GalleryPage() {
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
 
+      <WireframeScroll />
+
       <div className="w-full relative z-10">
         <section className="min-h-[85vh] flex flex-col items-center justify-center relative">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center">
+            <motion.div variants={fadeUp} className="mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs uppercase tracking-widest">
+                <Clapperboard size={14} /> Film • Television
+              </div>
+            </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
               Production <span className="text-gradient-accent">Gallery</span>
             </h1>
