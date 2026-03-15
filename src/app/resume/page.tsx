@@ -166,7 +166,7 @@ export default function ResumePage() {
                     alt=""
                     width={800}
                     height={200}
-                    className="absolute -top-4 -right-12 w-[80%] max-w-none opacity-[0.05] mix-blend-screen"
+                    className="absolute -top-4 -right-12 w-[80%] max-w-none opacity-[0.25] mix-blend-screen"
                   />
                   {/* Dark overlays for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-slate-950/80" />
@@ -219,7 +219,7 @@ export default function ResumePage() {
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <iframe
                     src="https://www.youtube.com/embed/1ZTEajxD6EU?autoplay=1&mute=1&loop=1&playlist=1ZTEajxD6EU&controls=0&showinfo=0&rel=0"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full opacity-60 mix-blend-screen"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full opacity-80 mix-blend-screen"
                     allow="autoplay; encrypted-media"
                     title="Wizard of Oz Sphere Project"
                     style={{ border: 0 }}
