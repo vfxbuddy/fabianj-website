@@ -183,8 +183,32 @@ async function startPolling() {
                         await sendTelegramMessage(userId, "❌ Workspace check failed (npm run lint reported errors).");
                     }
                 } else {
-                    // Just acknowledge the relay for normal messages
-                    await sendTelegramMessage(userId, "Relayed to Antigravity 🧠... I'm looking into it now.");
+                    // --- AUTONOMOUS AI AGENT LOGIC ---
+                    await sendTelegramMessage(userId, "Relayed to Autonomous Gemini AI 🧠... I'm looking into it now.");
+                    try {
+                        console.log("Starting agent.js...");
+                        // Run agent.js and capture all output
+                        const agentPath = path.join(__dirname, 'agent.js');
+                        // Escape quotes in the prompt
+                        const safePrompt = text.replace(/"/g, '\\"');
+                        const agentOutput = execSync(`node "${agentPath}" "${safePrompt}"`).toString();
+                        
+                        // Send the result back to the user
+                        const cleanOutput = agentOutput.replace(/\[dotenv[^\]]+\] [^\n]+\n/g, ''); // strip dotenv warnings
+                        console.log("Agent finished. Sending response...", cleanOutput.substring(0, 100));
+                        
+                        // Telegram max message length is 4096, break it up if necessary
+                        if (cleanOutput.length > 4000) {
+                            await sendTelegramMessage(userId, cleanOutput.substring(cleanOutput.length - 4000));
+                        } else {
+                            await sendTelegramMessage(userId, cleanOutput);
+                        }
+                    } catch (agentError) {
+                        console.error("Agent execution failed:", agentError.message);
+                        if (agentError.stdout) console.log(agentError.stdout.toString());
+                        if (agentError.stderr) console.error(agentError.stderr.toString());
+                        await sendTelegramMessage(userId, "⚠️ The Autonomous Agent encountered an error executing your request.");
+                    }
                 }
             }
 
