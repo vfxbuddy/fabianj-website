@@ -101,7 +101,7 @@ async function run() {
       for (let retry = 0; retry < 3; retry++) {
         try {
           response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-2.0-flash',
             contents: messages,
             config: { tools, systemInstruction: SYSTEM_PROMPT }
           });
