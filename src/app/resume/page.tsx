@@ -166,7 +166,7 @@ export default function ResumePage() {
                     alt=""
                     width={800}
                     height={200}
-                    className="absolute -top-4 -right-12 w-[80%] max-w-none opacity-[0.25] mix-blend-screen"
+                    className="absolute -top-4 -right-12 w-[80%] max-w-none opacity-[0.20] mix-blend-screen"
                   />
                   {/* Dark overlays for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-slate-950/80" />
