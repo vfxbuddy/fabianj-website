@@ -108,7 +108,10 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
 
             {/* Content */}
             {/* Content */}
-            <div className="flex-1 overflow-y-auto notion-container" style={{ background: "#191919" }}>
+            <div 
+              className="flex-1 overflow-y-auto notion-container" 
+              style={{ background: "radial-gradient(circle at top, #110022 0%, #000000 100%)" }}
+            >
               {loading && (
                 <div className="flex items-center justify-center h-full min-h-[300px]">
                   <Loader2 className="w-8 h-8 text-violet-500 animate-spin" />
