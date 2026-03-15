@@ -59,10 +59,11 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={clsx(
-                    "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center hover:scale-105 active:scale-95",
+                    "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center",
                     isActive 
                       ? (link.href === "/xr" ? "text-violet-400 font-medium" : "text-teal-400 font-medium")
-                      : (link.href === "/xr" ? "text-slate-400 hover:text-violet-400" : "text-slate-400 hover:text-teal-400")
+                      : (link.href === "/xr" ? "text-slate-400 hover:text-violet-400" : "text-slate-400 hover:text-teal-400"),
+                    !isActive && "hover:scale-105 active:scale-95"
                   )}
                 >
                   <span className="relative z-10">{link.label}</span>

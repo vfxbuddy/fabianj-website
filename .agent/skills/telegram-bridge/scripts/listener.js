@@ -11,7 +11,9 @@ const RESPONSE_FILE = path.join(__dirname, 'response.txt');
 
 // Load environment variables from .env.local manually
 function loadEnv() {
-    const envPath = path.join(process.cwd(), '.env.local');
+    // Look for .env.local in the project root (4 levels up from this script)
+    const projectRoot = path.resolve(__dirname, '../../../../');
+    const envPath = path.join(projectRoot, '.env.local');
     if (fs.existsSync(envPath)) {
         console.log(`Loading environment from ${envPath}...`);
         const envContent = fs.readFileSync(envPath, 'utf8');
@@ -93,9 +95,10 @@ async function watchVercelDeployment(chatId) {
 function runWorkspaceCheck() {
     console.log("Running local syntax check (npm run lint)...");
     try {
+        const projectRoot = path.resolve(__dirname, '../../../../');
         // Use npm.cmd for Windows compatibility to avoid script execution policy issues
         const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-        execSync(`${npmCmd} run lint`, { stdio: 'inherit' });
+        execSync(`${npmCmd} run lint`, { stdio: 'inherit', cwd: projectRoot });
         return true;
     } catch (e) {
         return false;
@@ -105,7 +108,8 @@ function runWorkspaceCheck() {
 function gitPushUpdate() {
     try {
         console.log("Checking for changes...");
-        const status = execSync("git status --porcelain").toString().trim();
+        const projectRoot = path.resolve(__dirname, '../../../../');
+        const status = execSync("git status --porcelain", { cwd: projectRoot }).toString().trim();
         
         if (!status) {
             console.log("No changes detected to push.");
@@ -113,9 +117,9 @@ function gitPushUpdate() {
         }
 
         console.log("Committing and pushing changes...");
-        execSync("git add .", { stdio: 'inherit' });
-        execSync('git commit -m "Telegram Mobile Update"', { stdio: 'inherit' });
-        execSync("git push origin main", { stdio: 'inherit' });
+        execSync("git add .", { stdio: 'inherit', cwd: projectRoot });
+        execSync('git commit -m "Telegram Mobile Update"', { stdio: 'inherit', cwd: projectRoot });
+        execSync("git push origin main", { stdio: 'inherit', cwd: projectRoot });
         return true;
     } catch (e) {
         console.error("Git operation failed:", e.message);
