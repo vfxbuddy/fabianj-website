@@ -18,13 +18,6 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none">
@@ -32,10 +25,7 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={clsx(
-          "mt-6 transition-all duration-700 pointer-events-auto",
-          scrolled ? "w-[90%] max-w-3xl" : "w-[95%] max-w-4xl"
-        )}
+        className="mt-6 pointer-events-auto w-[95%] max-w-4xl"
       >
         <nav 
           className="glass-pill backdrop-blur-xl bg-slate-950/50 flex items-center justify-between px-6 py-3"

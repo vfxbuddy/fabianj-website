@@ -62,6 +62,14 @@ function runWorkspaceCheck() {
 
 function gitPushUpdate() {
     try {
+        console.log("Checking for changes...");
+        const status = execSync("git status --porcelain").toString().trim();
+        
+        if (!status) {
+            console.log("No changes detected to push.");
+            return "no_changes";
+        }
+
         console.log("Committing and pushing changes...");
         execSync("git add .", { stdio: 'inherit' });
         execSync('git commit -m "Telegram Mobile Update"', { stdio: 'inherit' });
@@ -107,8 +115,11 @@ async function startPolling() {
                 // In a real scenario, this is where the agent would pick up the work.
                 // For now, we simulate the deployment flow.
                 if (runWorkspaceCheck()) {
-                    if (gitPushUpdate()) {
+                    const result = gitPushUpdate();
+                    if (result === true) {
                         await sendTelegramMessage(userId, "✅ Deployment triggered! Vercel is building your changes.");
+                    } else if (result === "no_changes") {
+                        await sendTelegramMessage(userId, "ℹ️ Request received, but no code changes were necessary.");
                     } else {
                         await sendTelegramMessage(userId, "❌ Git push failed. Check console for errors.");
                     }
