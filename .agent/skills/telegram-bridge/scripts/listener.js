@@ -110,21 +110,23 @@ async function startPolling() {
                 }
 
                 console.log(`Received authorized request: ${text}`);
-                await sendTelegramMessage(userId, "Processing your request... ⚙️");
-
-                // In a real scenario, this is where the agent would pick up the work.
-                // For now, we simulate the deployment flow.
-                if (runWorkspaceCheck()) {
-                    const result = gitPushUpdate();
-                    if (result === true) {
-                        await sendTelegramMessage(userId, "✅ Deployment triggered! Vercel is building your changes.");
-                    } else if (result === "no_changes") {
-                        await sendTelegramMessage(userId, "ℹ️ Request received, but no code changes were necessary.");
+                if (text.startsWith('/deploy') || text.startsWith('/push')) {
+                    await sendTelegramMessage(userId, "Starting deployment... 🚀");
+                    if (runWorkspaceCheck()) {
+                        const result = gitPushUpdate();
+                        if (result === true) {
+                            await sendTelegramMessage(userId, "✅ Deployment triggered! Vercel is building your changes.");
+                        } else if (result === "no_changes") {
+                            await sendTelegramMessage(userId, "ℹ️ No changes detected to deploy.");
+                        } else {
+                            await sendTelegramMessage(userId, "❌ Git push failed. Check console for errors.");
+                        }
                     } else {
-                        await sendTelegramMessage(userId, "❌ Git push failed. Check console for errors.");
+                        await sendTelegramMessage(userId, "❌ Workspace check failed (npm run lint reported errors).");
                     }
                 } else {
-                    await sendTelegramMessage(userId, "❌ Workspace check failed (npm run lint reported errors).");
+                    // Just acknowledge the relay for normal messages
+                    await sendTelegramMessage(userId, "Relayed to Antigravity 🧠... I'm looking into it now.");
                 }
             }
         } catch (error) {
