@@ -136,7 +136,7 @@ export default function GalleryPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div variants={fadeUp} className="text-center mb-20">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
-                <span className="text-gradient-accent">Gallery</span>
+                Production <span className="text-gradient-accent">Gallery</span>
               </h1>
               <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
                 VFX Credits for Screens Big, Small, and Everything In Between
