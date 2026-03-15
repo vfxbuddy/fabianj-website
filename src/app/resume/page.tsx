@@ -117,44 +117,43 @@ export default function ResumePage() {
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-
         {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-24 w-full"
-        >
-          <div className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-xs tracking-widest font-medium text-teal-400 backdrop-blur-md mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
-            </span>
-            SINCE 2008
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-            16+ Years of <br />
-            <span className="text-gradient-accent">Visual Excellence</span>
-          </h1>
-
-          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed mb-10">
-            From blockbuster feature films to cutting-edge spatial computing. A journey of combining technical precision with creative vision.
-          </p>
-
-          <Link
-            href={PDF_URL}
-            target="_blank"
-            className="inline-flex items-center gap-2 text-sm font-bold text-slate-950 bg-white hover:bg-teal-400 transition-colors px-8 py-4 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(45,212,191,0.4)]"
+        <section className="min-h-[80vh] flex flex-col items-center justify-center relative w-full pb-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center w-full"
           >
-            <Download size={18} />
-            Download Original PDF
-          </Link>
-          
-          <div className="relative h-24 mt-12 mb-12">
-            <ScrollIndicator />
-          </div>
-        </motion.div>
+            <div className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-xs tracking-widest font-medium text-teal-400 backdrop-blur-md mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+              </span>
+              SINCE 2008
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+              16+ Years of <br />
+              <span className="text-gradient-accent">Visual Excellence</span>
+            </h1>
+
+            <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed mb-10">
+              From blockbuster feature films to cutting-edge spatial computing. A journey of combining technical precision with creative vision.
+            </p>
+
+            <Link
+              href={PDF_URL}
+              target="_blank"
+              className="inline-flex items-center gap-2 text-sm font-bold text-slate-950 bg-white hover:bg-teal-400 transition-colors px-8 py-4 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(45,212,191,0.4)]"
+            >
+              <Download size={18} />
+              Download Original PDF
+            </Link>
+          </motion.div>
+
+          <ScrollIndicator />
+        </section>
 
         {/* Current Highlight — Refuge VFX */}
         <div className="w-full max-w-4xl mx-auto mb-16 z-20">

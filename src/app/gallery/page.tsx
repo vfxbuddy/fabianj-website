@@ -132,22 +132,21 @@ export default function GalleryPage() {
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
 
       <div className="w-full relative z-10">
-        <motion.div initial="hidden" animate="visible">
+        <section className="min-h-[85vh] flex flex-col items-center justify-center relative">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
+              Production <span className="text-gradient-accent">Gallery</span>
+            </h1>
+            <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+              VFX Credits for Screens Big, Small, and Everything In Between
+            </p>
+          </motion.div>
 
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <motion.div variants={fadeUp} className="text-center mb-20">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
-                Production <span className="text-gradient-accent">Gallery</span>
-              </h1>
-              <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-                VFX Credits for Screens Big, Small, and Everything In Between
-              </p>
-            </motion.div>
+          <ScrollIndicator />
+        </section>
 
-            {/* Scroll Hint */}
-            <div className="relative h-24 mb-12">
-              <ScrollIndicator />
-            </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div initial="hidden" animate="visible">
 
             {/* Video Player - Vimeo Embed */}
             <motion.div variants={fadeUp} className="mb-32 mx-auto w-full max-w-5xl aspect-video rounded-3xl overflow-hidden glass-panel relative border border-white/5 shadow-2xl">

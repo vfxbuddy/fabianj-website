@@ -67,23 +67,25 @@ export default function XRPage() {
       <div className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-          
-          <motion.div variants={fadeUp} className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs uppercase tracking-widest mb-6">
-              <Box size={14} /> Bezi • Blender • Figma
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+        <section className="min-h-[80vh] flex flex-col items-center justify-center relative pb-20">
+          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }} className="text-center">
+            <motion.div variants={fadeUp} className="mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs uppercase tracking-widest">
+                <Box size={14} /> Bezi • Blender • Figma
+              </div>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
               XR Spatial <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">Design</span>
-            </h1>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-slate-400 text-lg max-w-2xl mx-auto mb-12">
               Welcome to my XR portfolio. I create and prototype immersive augmented and mixed reality experiences bridging the physical and digital.
-            </p>
-            <div className="relative h-24 mt-12">
-              <ScrollIndicator variant="violet" />
-            </div>
+            </motion.p>
           </motion.div>
 
+          <ScrollIndicator variant="violet" />
+        </section>
+
+        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
           {/* Showreel - Vimeo Embed */}
           <motion.div variants={fadeUp} className="mb-24 mx-auto w-full max-w-4xl aspect-video rounded-3xl overflow-hidden glass-panel relative border-violet-500/20">
             <iframe

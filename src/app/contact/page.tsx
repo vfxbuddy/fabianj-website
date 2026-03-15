@@ -11,8 +11,7 @@ export default function ContactPage() {
       <div className="absolute bottom-[0%] left-[10%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="max-w-6xl mx-auto w-full px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 item-center">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 item-center min-h-[75vh] py-20">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             animate={{ opacity: 1, x: 0 }} 
@@ -81,10 +80,9 @@ export default function ContactPage() {
               </p>
             </form>
           </motion.div>
-
         </div>
-        <ScrollIndicator />
       </div>
+      <ScrollIndicator />
     </div>
   );
 }
