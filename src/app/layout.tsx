@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fabianj-website.vercel.app"),
+  metadataBase: new URL("https://fabianj.com"),
   title: {
     default: "Fabian Jimenez — Compositing Supervisor & XR Spatial Designer",
     template: "%s | Fabian Jimenez",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Fabian Jimenez — VFX Compositing Supervisor",
     description: "Transforming VFX with Creative Leadership!",
     type: "website",
-    url: "https://fabianj-website.vercel.app",
+    url: "https://fabianj.com",
     siteName: "Fabian Jimenez Portfolio",
     locale: "en_US",
   },

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://fabianj-website.vercel.app/sitemap.xml',
+    sitemap: 'https://fabianj.com/sitemap.xml',
   }
 }
