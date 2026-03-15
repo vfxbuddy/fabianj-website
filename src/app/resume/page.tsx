@@ -218,7 +218,7 @@ export default function ResumePage() {
                 {/* Background YouTube Video */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <iframe
-                    src="https://www.youtube.com/embed/1ZTEajxD6EU?autoplay=1&mute=1&loop=1&playlist=1ZTEajxD6EU&controls=0&showinfo=0&rel=0&start=10"
+                    src="https://www.youtube.com/embed/1ZTEajxD6EU?autoplay=1&mute=1&loop=1&playlist=1ZTEajxD6EU&controls=0&showinfo=0&rel=0&start=12"
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full opacity-80 mix-blend-screen"
                     allow="autoplay; encrypted-media"
                     title="Wizard of Oz Sphere Project"
