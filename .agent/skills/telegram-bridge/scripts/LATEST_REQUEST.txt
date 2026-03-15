@@ -1,1 +1,1 @@
-In gallery remove the word “Production” from title
+/deploy
