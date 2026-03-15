@@ -26,9 +26,9 @@ const tools = [
         parameters: { type: "object", properties: { filePath: { type: "string" } }, required: ['filePath'] }
       },
       {
-        name: 'write_file_content',
-        description: 'Overwrite a file in the workspace.',
-        parameters: { type: "object", properties: { filePath: { type: "string" }, content: { type: "string" } }, required: ['filePath', 'content'] }
+        name: 'replace_in_file',
+        description: 'Replace a specific exact string in a file with new content. Use this to edit files.',
+        parameters: { type: "object", properties: { filePath: { type: "string" }, targetContent: { type: "string" }, replacementContent: { type: "string" } }, required: ['filePath', 'targetContent', 'replacementContent'] }
       }
     ]
   }
@@ -48,7 +48,7 @@ async function run() {
            contents: messages,
            config: {
              tools,
-             systemInstruction: "You are an autonomous AI coding assistant. Fulfill the user request by reading files, writing code, and explaining your changes. The project is at C:\\Antigravity\\Website. Always double check paths using run_command before reading. Be extremely concise in your final answer to the user."
+             systemInstruction: "You are an autonomous AI coding assistant. Fulfill the user request. Rules:\n1. Use run_command to find files.\n2. Use read_file_content to read them.\n3. To modify a file, use replace_in_file by providing the EXACT string to replace and the new string. Be extremely precise.\n4. Do NOT read the same file multiple times.\n5. Once you have written the changes, STOP by returning a normal text response explaining what you did."
            }
         });
 
@@ -73,10 +73,17 @@ async function run() {
               } else if (name === 'read_file_content') {
                  console.log(`[Agent] Reading file: ${args.filePath}`);
                  resultStr = fs.readFileSync(path.resolve('C:\\Antigravity\\Website', args.filePath), 'utf8');
-              } else if (name === 'write_file_content') {
-                 console.log(`[Agent] Writing to file: ${args.filePath}`);
-                 fs.writeFileSync(path.resolve('C:\\Antigravity\\Website', args.filePath), args.content);
-                 resultStr = "Success. File modified.";
+              } else if (name === 'replace_in_file') {
+                 console.log(`[Agent] Replacing text in: ${args.filePath}`);
+                 const fullPath = path.resolve('C:\\Antigravity\\Website', args.filePath);
+                 let content = fs.readFileSync(fullPath, 'utf8');
+                 if (content.includes(args.targetContent)) {
+                     content = content.replace(args.targetContent, args.replacementContent);
+                     fs.writeFileSync(fullPath, content);
+                     resultStr = "Success. File modified.";
+                 } else {
+                     resultStr = "Error: targetContent not found in file. Please read the file again and provide the EXACT targetContent string.";
+                 }
               }
             } catch (e) {
               resultStr = e.message;
@@ -90,8 +97,8 @@ async function run() {
           
           // --- THROTTLE ---
           // Gemini Free Tier allows 15 requests per minute (1 every 4s)
-          console.log("[Agent] Throttling for 4 seconds to respect API limits...");
-          await new Promise(r => setTimeout(r, 4000));
+          console.log("[Agent] Throttling for 6 seconds to respect API limits...");
+          await new Promise(r => setTimeout(r, 6000));
 
         } else {
           console.log("\n=== AGENT RESPONSE ===");

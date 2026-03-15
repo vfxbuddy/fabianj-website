@@ -135,8 +135,8 @@ export default function GalleryPage() {
           
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div variants={fadeUp} className="text-center mb-20">
-              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-                Production <span className="text-gradient-accent">Gallery</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white leading-tight">
+                <span className="text-gradient-accent">Gallery</span>
               </h1>
               <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
                 Infinite ribbons of official credits and visual contribution across major productions.
