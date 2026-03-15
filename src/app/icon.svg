@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simplified Background Grid -->
+  <circle cx="6" cy="6" r="1" fill="#2dd4bf" opacity="0.4" />
+  <circle cx="18" cy="6" r="1" fill="#2dd4bf" opacity="0.4" />
+  <circle cx="6" cy="18" r="1" fill="#2dd4bf" opacity="0.4" />
+  <circle cx="18" cy="18" r="1" fill="#2dd4bf" opacity="0.4" />
+
+  <!-- Monogram FJ in Jimenez Teal -->
+  <!-- F -->
+  <path d="M6 6V18" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M6 6H14" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M6 12H12" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+  
+  <!-- J -->
+  <path d="M18 6V16C18 17.1 17.1 18 16 18H12" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" />
+</svg>
