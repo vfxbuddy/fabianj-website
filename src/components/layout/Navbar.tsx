@@ -61,7 +61,7 @@ export function Navbar() {
                   className={clsx(
                     "group relative px-4 py-2 text-sm transition-colors duration-300 rounded-full flex items-center justify-center",
                     isActive 
-                      ? "text-white font-medium" 
+                      ? (link.href === "/xr" ? "text-violet-400 font-medium" : "text-teal-400 font-medium")
                       : (link.href === "/xr" ? "text-slate-400 hover:text-violet-400" : "text-slate-400 hover:text-teal-400")
                   )}
                 >
@@ -72,8 +72,8 @@ export function Navbar() {
                     <motion.div
                       layoutId="nav-indicator"
                       className={clsx(
-                        "absolute inset-0 bg-white/10 transition-colors duration-300 rounded-full",
-                        link.href === "/xr" ? "group-hover:bg-violet-500/20" : "group-hover:bg-teal-500/20"
+                        "absolute inset-0 transition-colors duration-300 rounded-full",
+                        link.href === "/xr" ? "bg-violet-500/10 group-hover:bg-violet-500/20" : "bg-teal-500/10 group-hover:bg-teal-500/20"
                       )}
                       transition={{
                         type: "spring",
