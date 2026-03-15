@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 
-export function ScrollIndicator() {
+interface ScrollIndicatorProps {
+  variant?: "teal" | "violet";
+}
+
+export function ScrollIndicator({ variant = "teal" }: ScrollIndicatorProps) {
+  const fromColor = variant === "teal" ? "from-teal-500/50" : "from-violet-500/50";
+  const viaColor = variant === "teal" ? "via-teal-400" : "via-violet-400";
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: -10 }}
@@ -13,7 +20,7 @@ export function ScrollIndicator() {
       <span className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-medium">
         Scroll
       </span>
-      <div className="w-[1px] h-12 bg-gradient-to-b from-violet-500/50 to-transparent relative overflow-hidden">
+      <div className={`w-[1px] h-12 bg-gradient-to-b ${fromColor} to-transparent relative overflow-hidden`}>
         <motion.div 
           animate={{ 
             y: ["-100%", "100%"] 
@@ -23,7 +30,7 @@ export function ScrollIndicator() {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-violet-400 to-transparent"
+          className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent ${viaColor} to-transparent`}
         />
       </div>
     </motion.div>

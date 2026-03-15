@@ -80,7 +80,7 @@ export default function XRPage() {
               Welcome to my XR portfolio. I create and prototype immersive augmented and mixed reality experiences bridging the physical and digital.
             </p>
             <div className="relative h-24 mt-12">
-              <ScrollIndicator />
+              <ScrollIndicator variant="violet" />
             </div>
           </motion.div>
 
