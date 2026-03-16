@@ -136,7 +136,7 @@ export function Navbar() {
                   delay: 0.2 // Wait for items to start exiting
                 }
               }}
-              className="absolute top-full right-0 mt-3 w-full max-w-[280px] p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
+              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-[280px] p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
               style={{ 
                 "--nav-border-color": pathname === "/xr" 
                   ? "rgba(139, 92, 246, 1)" 
