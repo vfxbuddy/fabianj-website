@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlobalGrid } from "@/components/layout/GlobalGrid";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import "react-notion-x/src/styles.css";
 import "./globals.css";
 
@@ -71,10 +72,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950`}
       >
-        <GlobalGrid />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <GlobalGrid />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
