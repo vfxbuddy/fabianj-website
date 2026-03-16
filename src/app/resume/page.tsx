@@ -288,7 +288,7 @@ export default function ResumePage() {
                     <div className="relative w-full max-w-2xl group flex flex-col items-center px-4 md:px-0">
                       
                       {/* Center Node - Pinned above card */}
-                      <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                      <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
                         <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-slate-950 border border-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.8)] transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-teal-400/60 pointer-events-auto">
                           <motion.div
                             whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}

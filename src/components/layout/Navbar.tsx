@@ -120,11 +120,11 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-20 left-1/2 -translate-x-1/2 w-[95%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border border-[var(--nav-border-color)]"
+            className="absolute top-[4.5rem] left-1/2 -translate-x-1/2 w-[95%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border border-[var(--nav-border-color)] backdrop-blur-2xl bg-slate-950/60"
             style={{ 
               "--nav-border-color": pathname === "/xr" 
-                ? "rgba(139, 92, 246, 0.5)" 
-                : "rgba(20, 184, 166, 0.5)"
+                ? "rgba(139, 92, 246, 0.6)" 
+                : "rgba(20, 184, 166, 0.6)"
             } as React.CSSProperties}
           >
             <div className="flex flex-col gap-1 p-2">
