@@ -25,8 +25,8 @@ export function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: isSmallMobile ? 0 : 0.15,
-        delayChildren: isSmallMobile ? 0 : 0.2,
+        staggerChildren: isSmallMobile ? 0 : 0.1,
+        delayChildren: isSmallMobile ? 0 : 0.1,
       },
     },
   };
@@ -42,7 +42,7 @@ export function Hero() {
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: isSmallMobile ? 0 : 1,
+        duration: isSmallMobile ? 0 : 0.8,
         ease: [0.16, 1, 0.3, 1] as any,
       },
     },
@@ -235,7 +235,7 @@ export function Hero() {
                 className="text-gradient-accent inline-block mt-2"
                 initial={isSmallMobile ? false : { opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={isSmallMobile ? { duration: 0 } : { duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={isSmallMobile ? { duration: 0 } : { duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
               >
                 Creative Leadership

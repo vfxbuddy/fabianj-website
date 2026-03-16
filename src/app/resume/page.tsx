@@ -131,7 +131,7 @@ export default function ResumePage() {
             scale: 1, 
             filter: "blur(0px)" 
           }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-24 w-full"
         >
           <div className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-xs tracking-widest font-medium text-teal-400 backdrop-blur-md mb-8">

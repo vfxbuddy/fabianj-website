@@ -73,7 +73,7 @@ export default function XRPage() {
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)", 
-      transition: { duration: 0.8, ease: "circOut" } 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 

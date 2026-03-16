@@ -13,9 +13,9 @@ export default function ContactPage() {
       <div className="max-w-6xl mx-auto w-full px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 item-center min-h-[75vh] py-20">
           <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -30, filter: "blur(10px)" }} 
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col justify-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
@@ -43,9 +43,9 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} 
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <form className="glass-panel p-8 sm:p-10 flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
               <h2 className="text-2xl font-bold text-white mb-2">Send a Message</h2>
