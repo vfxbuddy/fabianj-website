@@ -176,21 +176,13 @@ export function Hero() {
           
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        </div>
-
-        <motion.div
+        </div>        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 perspective-1000"
         >
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
-            {/* Scroll Indicator - Hidden on iPhone size, shown on Tablet+ */}
-          {!isSmallMobile && (
-            <motion.div variants={itemVariants} className="mt-12 w-full flex justify-center">
-              <ScrollIndicator />
-            </motion.div>
-          )}
             {/* Roller Deck Badge — Cycling Shows & Films */}
             <motion.div variants={itemVariants} className="mb-8 flex justify-center w-full">
               <div className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs tracking-widest font-medium text-slate-300 backdrop-blur-md overflow-hidden">
@@ -234,7 +226,7 @@ export function Hero() {
               variants={itemVariants}
               className="mb-12 max-w-2xl text-lg text-slate-400 sm:text-xl leading-relaxed text-center px-4 font-light tracking-wide"
             >
-              Compositing Supervisor | Senior &amp; Lead VFX Compositor | XR Community Builder
+              Compositing Supervisor | Senior & Lead VFX Compositor | XR Community Builder
             </motion.p>
 
             {/* CTA Buttons */}
@@ -275,8 +267,13 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Scroll Hint */}
-        <ScrollIndicator />
+        {/* Scroll Hint - Adaptive visibility */}
+        {!isSmallMobile && (
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+            <ScrollIndicator />
+          </div>
+        )}
+>
       </section>
 
       {/* Showreel Modal Overlay */}
