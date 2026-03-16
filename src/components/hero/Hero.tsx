@@ -9,16 +9,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
 
 export function Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -28,10 +18,21 @@ export function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  const containerVariants = {
+    hidden: { opacity: isSmallMobile ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: isSmallMobile ? 0 : 0.15,
+        delayChildren: isSmallMobile ? 0 : 0.2,
+      },
+    },
+  };
+
   const itemVariants = {
     hidden: {
-      opacity: 0,
-      y: 30,
+      opacity: isSmallMobile ? 1 : 0,
+      y: isSmallMobile ? 0 : 30,
       filter: isMobile ? "blur(0px)" : "blur(10px)"
     },
     visible: {
@@ -39,7 +40,7 @@ export function Hero() {
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 1,
+        duration: isSmallMobile ? 0 : 1,
         ease: [0.16, 1, 0.3, 1] as any,
       },
     },
@@ -221,9 +222,9 @@ export function Hero() {
               <br />
               <motion.span 
                 className="text-gradient-accent inline-block mt-2"
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                initial={isSmallMobile ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={isSmallMobile ? { duration: 0 } : { duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 Creative Leadership
               </motion.span>
