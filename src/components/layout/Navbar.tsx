@@ -108,9 +108,7 @@ export function Navbar() {
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </nav>
-
-        {/* Mobile Menu - Now nested for perfect relative positioning */}
+        </nav>        {/* Mobile Menu - Now nested for perfect relative positioning */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -132,7 +130,11 @@ export function Navbar() {
                 y: -60, 
                 scale: 0.9, 
                 filter: "blur(8px)",
-                transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] }
+                transition: { 
+                  duration: 0.5, 
+                  ease: [0.32, 0, 0.67, 0],
+                  delay: 0.2 // Wait for items to start exiting
+                }
               }}
               className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-sm p-4 flex flex-col pointer-events-auto border-[1.5px] border-[var(--nav-border-color)] bg-slate-950/95 backdrop-blur-3xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
               style={{ 
@@ -149,8 +151,12 @@ export function Navbar() {
                       key={link.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ delay: i * 0.05 + 0.1 }}
+                      exit={{ opacity: 0, x: 10 }}
+                      transition={{ 
+                        // Entrance: top-down (0.1, 0.15, 0.2...)
+                        // Exit: bottom-up sequence
+                        delay: isOpen ? (i * 0.05 + 0.1) : ((navLinks.length - i) * 0.05)
+                      }}
                     >
                       <Link
                         href={link.href}
@@ -170,8 +176,8 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: 0.3 }}
+                  exit={{ opacity: 0, y: 10, x: 10 }}
+                  transition={{ delay: isOpen ? 0.35 : 0 }}
                   className="mt-4 pt-4 border-t border-white/10"
                 >
                     <Link
@@ -190,4 +196,3 @@ export function Navbar() {
     </header>
   );
 }
-
