@@ -123,6 +123,12 @@ export function Hero() {
     ([x, y]) => `radial-gradient(800px circle at ${x}px ${y}px, rgba(45, 212, 191, 0.12), transparent 40%)`
   );
 
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Lock body scroll when showReel is open
   useEffect(() => {
     if (showReel) {
@@ -176,7 +182,9 @@ export function Hero() {
           
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        </div>        <motion.div
+        </div>
+        
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -267,12 +275,10 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Scroll Hint - Adaptive visibility */}
-        {!isSmallMobile && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-            <ScrollIndicator />
-          </div>
-        )}
+        {/* Scroll Hint - Adaptive visibility via CSS and JS */}
+        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <ScrollIndicator />
+        </div>
       </section>
 
       {/* Showreel Modal Overlay */}
