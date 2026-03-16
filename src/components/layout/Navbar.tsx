@@ -186,7 +186,12 @@ export function Navbar() {
                     <Link
                       href="/contact"
                       onClick={() => setIsOpen(false)}
-                      className="block w-full text-right rounded-xl px-4 py-3 text-sm font-medium transition-colors text-slate-400 hover:bg-white/5 hover:text-white"
+                      className={clsx(
+                        "block w-full text-right rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                        pathname === "/contact"
+                          ? "bg-white/20 text-white shadow-[0_0_15px_rgba(0,0,0,0.1)]"
+                          : "text-slate-400 hover:bg-white/5 hover:text-white"
+                      )}
                     >
                       Let's Talk
                     </Link>
