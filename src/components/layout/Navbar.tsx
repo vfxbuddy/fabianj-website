@@ -113,15 +113,19 @@ export function Navbar() {
         </nav>
       </motion.div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto"
+            className="absolute top-20 left-1/2 -translate-x-1/2 w-[95%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border border-[var(--nav-border-color)]"
+            style={{ 
+              "--nav-border-color": pathname === "/xr" 
+                ? "rgba(139, 92, 246, 0.5)" 
+                : "rgba(20, 184, 166, 0.5)"
+            } as React.CSSProperties}
           >
             <div className="flex flex-col gap-1 p-2">
               {navLinks.map((link, i) => {
