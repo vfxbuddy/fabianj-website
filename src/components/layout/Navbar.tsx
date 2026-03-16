@@ -25,7 +25,7 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 pointer-events-auto w-[95%] max-w-4xl"
+        className="mt-6 pointer-events-auto w-[95%] max-w-4xl relative"
       >
         <nav 
           className="glass-pill backdrop-blur-xl bg-slate-950/50 flex items-center justify-between px-6 py-3"
@@ -35,7 +35,7 @@ export function Navbar() {
               : "rgba(20, 184, 166, 0.6)"  // Teal-500 at 60%
           } as React.CSSProperties}
         >
-          {/* Logo */}
+          {/* ... existing logo and desktop links ... */}
           <Link
             href="/"
             className="text-base font-bold tracking-[0.15em] text-white transition-opacity hover:opacity-80 flex items-center gap-2 group"
@@ -67,7 +67,6 @@ export function Navbar() {
                 >
                   <span className="relative z-10">{link.label}</span>
                   
-                  {/* Active background pill (moves fluidly via layoutId to the selected item) */}
                   {isActive && (
                     <motion.div
                       layoutId="nav-indicator"
@@ -83,7 +82,6 @@ export function Navbar() {
                     />
                   )}
 
-                  {/* Scratch Animation Container */}
                   <div className={clsx(
                     link.href === "/xr" ? "nav-film-scratch-violet" : "nav-film-scratch", 
                     isActive && "animate-scratch-once"
@@ -111,81 +109,82 @@ export function Navbar() {
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </nav>
-      </motion.div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -40, scale: 0.95, filter: "blur(10px)" }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
-              scale: 1, 
-              filter: "blur(0px)",
-              transition: {
-                type: "spring",
-                stiffness: 300,
-                damping: 30
-              }
-            }}
-            exit={{ 
-              opacity: 0, 
-              y: -40, 
-              scale: 0.95, 
-              filter: "blur(20px)",
-              transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
-            }}
-            className="absolute top-[4.5rem] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border-2 border-[var(--nav-border-color)] backdrop-blur-3xl bg-slate-900/90 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_0_1px_var(--nav-border-color)]"
-            style={{ 
-              "--nav-border-color": pathname === "/xr" 
-                ? "rgba(139, 92, 246, 0.9)" 
-                : "rgba(20, 184, 166, 0.9)"
-            } as React.CSSProperties}
-          >
-            <div className="flex flex-col gap-1 p-2">
-              {navLinks.map((link, i) => {
-                const isActive = pathname === link.href;
-                return (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 + 0.1 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={clsx(
-                        "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
-                        isActive
-                          ? "bg-white/10 text-white"
-                          : "text-slate-400 hover:bg-white/5 hover:text-white"
-                      )}
+        {/* Mobile Menu - Now nested for perfect relative positioning */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
+              animate={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                filter: "blur(0px)",
+                transition: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30
+                }
+              }}
+              exit={{ 
+                opacity: 0, 
+                y: -10, 
+                scale: 0.95, 
+                filter: "blur(10px)",
+                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+              }}
+              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border-2 border-[var(--nav-border-color)] backdrop-blur-3xl bg-slate-950/80 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)]"
+              style={{ 
+                "--nav-border-color": pathname === "/xr" 
+                  ? "rgba(139, 92, 246, 0.9)" 
+                  : "rgba(20, 184, 166, 0.9)"
+              } as React.CSSProperties}
+            >
+              <div className="flex flex-col gap-1 p-2">
+                {navLinks.map((link, i) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 + 0.1 }}
                     >
-                      {link.label}
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={clsx(
+                          "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
+                          isActive
+                            ? "bg-white/10 text-white"
+                            : "text-slate-400 hover:bg-white/5 hover:text-white"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-4 pt-4 border-t border-white/10"
+                >
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full text-right rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold transition-transform active:scale-95 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                    >
+                      Let's Talk
                     </Link>
-                  </motion.div>
-                );
-              })}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-4 pt-4 border-t border-white/10"
-              >
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="block w-full text-right rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold transition-transform active:scale-95"
-                  >
-                    Let's Talk
-                  </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </header>
   );
 }
