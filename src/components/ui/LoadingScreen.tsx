@@ -17,7 +17,7 @@ export function LoadingScreen() {
   useEffect(() => {
     const timer = setInterval(() => {
       setStatusIndex((prev) => (prev < statusMessages.length - 1 ? prev + 1 : prev));
-    }, 600);
+    }, 400); // Faster status cycling
     return () => clearInterval(timer);
   }, [statusMessages.length]);
 
@@ -27,8 +27,8 @@ export function LoadingScreen() {
     visible: (i: number) => ({
       opacity: 0.15,
       transition: {
-        delay: i * 0.05,
-        duration: 0.5,
+        delay: i * 0.03, // Faster grid delay
+        duration: 0.4,
       },
     }),
   };
@@ -40,8 +40,8 @@ export function LoadingScreen() {
       opacity: 0.4 - i * 0.1,
       y: 0,
       transition: {
-        delay: i * 0.2 + 0.5,
-        duration: 1,
+        delay: i * 0.1 + 0.3, // Faster layer delay
+        duration: 0.8,
         ease: "easeOut",
       },
     }),
@@ -53,8 +53,8 @@ export function LoadingScreen() {
       pathLength: 1,
       opacity: 1,
       transition: {
-        delay: 1.2,
-        duration: 1.5,
+        delay: 0.8, // Faster path delay
+        duration: 1,
         ease: "easeInOut",
       },
     },
@@ -66,15 +66,15 @@ export function LoadingScreen() {
       opacity: 0.3,
       scale: 1,
       transition: {
-        delay: 2.2,
-        duration: 0.8,
+        delay: 1.5, // Faster hud delay
+        duration: 0.5,
       }
     }
   };
 
   return (
     <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-slate-950 overflow-hidden">
-      <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+      <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
         {/* Cinematic Backdrop Glow */}
         <div className="absolute inset-0 bg-teal-500/5 blur-[100px] rounded-full animate-pulse pointer-events-none" />
         
@@ -153,7 +153,7 @@ export function LoadingScreen() {
             initial={{ opacity: 0 }}
             animate={{ 
               opacity: [0, 1, 0],
-              transition: { delay: 2.8, duration: 1.5, repeat: Infinity }
+              transition: { delay: 1.8, duration: 1, repeat: Infinity }
             }}
             className="fill-teal-400"
           />
@@ -183,7 +183,7 @@ export function LoadingScreen() {
             className="h-full bg-teal-400/40"
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
-            transition={{ duration: 3.5, ease: "linear" }}
+            transition={{ duration: 2, ease: "linear" }}
           />
         </div>
       </div>

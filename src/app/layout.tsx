@@ -6,6 +6,7 @@ import { GlobalGrid } from "@/components/layout/GlobalGrid";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import "react-notion-x/src/styles.css";
 import "./globals.css";
+import { ClientLayout } from "@/components/layout/ClientLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -72,12 +73,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950`}
       >
-        <SmoothScroll>
-          <GlobalGrid />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <ClientLayout>
+          <SmoothScroll>
+            <GlobalGrid />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </ClientLayout>
       </body>
     </html>
   );
