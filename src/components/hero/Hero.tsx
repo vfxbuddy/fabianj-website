@@ -10,6 +10,8 @@ import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 
+import clsx from "clsx";
+
 export function Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isSmallMobile = useMediaQuery("(max-width: 640px)");
@@ -153,7 +155,7 @@ export function Hero() {
 
   return (
     <>
-      <section className="relative min-h-screen pt-32 pb-24 lg:pt-48 flex items-center justify-center overflow-hidden">
+      <section id="hero-section" className="relative min-h-screen pt-32 pb-24 lg:pt-48 flex items-center justify-center overflow-hidden">
         {/* Background Autoplay Video — Muted, Looping, Cinematic */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <iframe
@@ -189,7 +191,10 @@ export function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 perspective-1000"
+          className={clsx(
+            "relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 perspective-1000",
+            isSmallMobile && "mobile-lite-hero"
+          )}
         >
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
             {/* Roller Deck Badge — Cycling Shows & Films */}
@@ -200,7 +205,7 @@ export function Hero() {
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentShow}
-                      initial={{ y: 20, opacity: 0 }}
+                      initial={isSmallMobile ? false : { y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -222,7 +227,7 @@ export function Hero() {
               <br />
               <motion.span 
                 className="text-gradient-accent inline-block mt-2"
-                initial={isSmallMobile ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 20, filter: "blur(10px)" }}
+                initial={isSmallMobile ? false : { opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={isSmallMobile ? { duration: 0 } : { duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
@@ -277,7 +282,7 @@ export function Hero() {
         </motion.div>
 
         {/* Scroll Hint - Adaptive visibility via CSS and JS */}
-        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <div className="scroll-indicator-root hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <ScrollIndicator />
         </div>
       </section>

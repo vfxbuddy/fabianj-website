@@ -357,3 +357,31 @@ body {
   10% { opacity: 1; }
   100% { left: 150%; opacity: 0; }
 }
+
+/* ==============================
+   MOBILE PERFORMANCE OVERRIDES (iPhone)
+   Instant visibility & hidden indicators
+   ============================== */
+
+@media (max-width: 640px) {
+  /* Kill initial loading animations for the Hero content via ID for zero-flicker */
+  #hero-section,
+  #hero-section *,
+  .mobile-lite-hero,
+  .mobile-lite-hero * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+    translate: none !important;
+    scale: none !important;
+    rotate: none !important;
+  }
+
+  /* Force hide scroll indicator on small screens */
+  .scroll-indicator-root,
+  .scroll-indicator-root * {
+    display: none !important;
+  }
+}
