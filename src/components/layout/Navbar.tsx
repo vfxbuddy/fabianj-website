@@ -154,13 +154,13 @@ export function Navbar() {
                 transition={{ delay: 0.3 }}
                 className="mt-4 pt-4 border-t border-white/10"
               >
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full text-center rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold"
-                >
-                  Book a Call
-                </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="block w-full text-center rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold"
+                  >
+                    Let's Talk
+                  </Link>
               </motion.div>
             </div>
           </motion.div>
