@@ -23,33 +23,41 @@ interface Project {
 
 const xrProjects: Project[] = [
   {
-    title: "Bezi Spatial Prototyping",
-    description: "Experimental spatial designs and interaction prototypes built natively for the Apple Vision Pro ecosystem using Bezi.",
-    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=2070&auto=format&fit=crop",
-    link: "https://www.notion.so/Bezi-Spatial-Prototyping-1a5229ad57e1c4fec868a4ea1f77fc140",
-    tools: ["Bezi", "Unity", "Spatial Design"],
-    badge: "Featured"
+    title: "Animus 3D Creator Challenge",
+    description: "Interactive proof-of-concept experienced in VR/MR. Built upon RTFKT + Animus Project lore to create a battle arena game. Focused on crafting the introduction, aesthetic, and XR-UX.",
+    badge: "2nd Place Winner",
+    tools: ["Bezi", "RTFKT"],
+    link: "https://efficacious-lotus-05e.notion.site/Animus-3D-Creator-Challenge-2033acc4d4ce41a29edadad0edb50363",
+    image: "/images/xr/animus.jpg",
   },
   {
-    title: "Gaussian Splitting Experiments",
-    description: "Capturing and rendering real-world environments using 3D Gaussian Splatting for immersive spatial backgrounds.",
-    image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?q=80&w=2070&auto=format&fit=crop",
-    link: "https://www.notion.so/Gaussian-Splitting-Experiments-1a5229ad57e1c4fec868a4ea1f77fc140",
-    tools: ["Luma AI", "Blender", "Postman"],
+    title: "Holiday Augments Challenge",
+    description: "Interactive prototype allowing users to place and hang Christmas ornaments in mixed reality.",
+    badge: "1st Place Winner",
+    tools: ["XR Prototype"],
+    link: "https://efficacious-lotus-05e.notion.site/Christmas-Ornaments-in-Mixed-Reality-d4141914ad0d4fb38f50737cedbdd0ad",
+    image: "/images/xr/holiday-augments.jpg",
   },
   {
-    title: "Interactive WebXR Scenes",
-    description: "Bespoke WebXR environments designed for browser-based VR/AR access, focusing on accessibility and visual fidelity.",
-    image: "https://images.unsplash.com/photo-1478416272538-5f7e51dc5400?q=80&w=2070&auto=format&fit=crop",
-    link: "https://www.notion.so/WebXR-Interactive-Scenes-1a5229ad57e1c4fec868a4ea1f77fc140",
-    tools: ["Three.js", "React Three Fiber", "GLSL"],
+    title: "Break Into Reality AR",
+    description: "AR prototype using Bezi, aimed at event discovery within local community parks. Highlights upcoming events in an immersive mobile experience.",
+    tools: ["Bezi", "Mobile AR"],
+    link: "https://efficacious-lotus-05e.notion.site/Break-Into-Reality-Design-Challenge-b2f580efed71410487f1f35f501b7a78",
+    image: "/images/xr/break-into-reality.jpg",
   },
   {
-    title: "Spatial UI/UX Systems",
-    description: "Developing design systems specifically for spatial interfaces, handling depth, gaze, and gesture-based interactions.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-    link: "https://www.notion.so/Spatial-UI-UX-Systems-1a5229ad57e1c4fec868a4ea1f77fc140",
-    tools: ["Figma", "Reality Composer", "SwiftUI"],
+    title: "MIT Reality Hackathon 2024",
+    description: "P.E.C.K. is a web-based AR app connecting students across classrooms globally. Created in 3 days. Focus on ideation, prompt engineering, XR design.",
+    tools: ["WebAR", "Hackathon"],
+    link: "https://devpost.com/software/p-e-c-k",
+    image: "/images/xr/mit-reality-hack.jpg",
+  },
+  {
+    title: "PaperAirplane XR",
+    description: "Mixed-reality app designed to guide users through folding paper airplanes with immersive visuals and step-by-step instructions.",
+    tools: ["Mixed Reality"],
+    link: "https://efficacious-lotus-05e.notion.site/PaperAirplane-XR-9d09fe515485463ea4a80df7011d99fd",
+    image: "/images/xr/paper-airplane.jpg",
   }
 ];
 

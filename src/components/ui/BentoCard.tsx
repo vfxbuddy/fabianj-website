@@ -45,7 +45,7 @@ export function BentoCard({ title, description, className, children, icon, delay
             src={backgroundImage}
             alt=""
             fill
-            className="object-cover img-bw-hover opacity-30 group-hover:opacity-50 transition-opacity duration-600"
+            className="object-cover img-bw-hover opacity-40 group-hover:opacity-70 transition-opacity duration-600"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent" />
