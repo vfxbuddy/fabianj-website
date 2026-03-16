@@ -108,39 +108,45 @@ export function Navbar() {
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </nav>        {/* Mobile Menu - Now nested for perfect relative positioning */}
+        </nav>        {/* Mobile Menu - Mechanical Pivot Implementation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               key="mobile-menu"
-              initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(4px)" }}
+              initial={{ 
+                opacity: 0, 
+                rotateX: -90, 
+                transformOrigin: "top",
+                filter: "blur(4px)",
+                scale: 0.9
+              }}
               animate={{ 
                 opacity: 1, 
-                y: 0, 
-                scale: 1, 
+                rotateX: 0, 
                 filter: "blur(0px)",
+                scale: 1,
                 transition: {
                   type: "spring",
-                  stiffness: 300,
-                  damping: 30
+                  stiffness: 150,
+                  damping: 20
                 }
               }}
               exit={{ 
                 opacity: 0, 
-                y: -60, 
-                scale: 0.9, 
+                rotateX: -90, 
+                scale: 0.9,
                 filter: "blur(8px)",
                 transition: { 
-                  duration: 0.5, 
-                  ease: [0.32, 0, 0.67, 0],
-                  delay: 0.2 // Wait for items to start exiting
+                  duration: 0.3, 
+                  ease: "easeInOut"
                 }
               }}
-              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
+              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-[2rem] shadow-[20px_40px_80px_-15px_rgba(0,0,0,0.8)]"
               style={{ 
+                perspective: "1000px",
                 "--nav-border-color": pathname === "/xr" 
-                  ? "rgba(139, 92, 246, 1)" 
-                  : "rgba(20, 184, 166, 1)",
+                  ? "rgba(139, 92, 246, 0.6)" 
+                  : "rgba(20, 184, 166, 0.6)",
                 "--nav-active-bg": pathname === "/xr"
                   ? "rgba(139, 92, 246, 0.2)"
                   : "rgba(20, 184, 166, 0.2)"
