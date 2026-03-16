@@ -8,8 +8,8 @@ import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Clapperboard } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "circOut" } }
+  hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "circOut" } }
 };
 
 interface PosterCardProps {
