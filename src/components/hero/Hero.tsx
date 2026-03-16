@@ -22,6 +22,7 @@ const containerVariants = {
 
 export function Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const isSmallMobile = useMediaQuery("(max-width: 640px)");
   const [showReel, setShowReel] = useState(false);
   const [currentShow, setCurrentShow] = useState(0);
   const mouseX = useMotionValue(0);
