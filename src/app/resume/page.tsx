@@ -285,21 +285,23 @@ export default function ResumePage() {
               return (
                 <div key={index} className="relative flex flex-col items-center w-full">
                   <FadeInCentered delay={0.1}>
-                    <div className="relative w-full group flex flex-col items-center">
+                    <div className="relative w-full max-w-2xl group flex flex-col items-center px-4 md:px-0">
 
-                      {/* Center Node on the line */}
-                      <div className="absolute left-1/2 -translate-x-1/2 -top-7 md:-top-8 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-slate-950 border border-teal-500/20 z-30 shadow-[0_0_30px_rgba(0,0,0,0.8)] transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-teal-400/60">
-                        <motion.div
-                          whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          {item.icon}
-                        </motion.div>
+                      {/* Center Node - Pinned above card */}
+                      <div className="absolute inset-x-0 -top-8 flex justify-center z-30 pointer-events-none">
+                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-slate-950 border border-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.8)] transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-teal-400/60 pointer-events-auto">
+                          <motion.div
+                            whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            {item.icon}
+                          </motion.div>
+                        </div>
                       </div>
 
                       {/* Centered Content Card */}
-                      <div className="w-full md:max-w-2xl mx-auto z-20">
-                        <div className="glass-panel mt-4 md:mt-0 p-6 sm:p-8 md:p-10 transition-all duration-500 group-hover:-translate-y-2 w-full relative overflow-hidden border border-white/5 group-hover:border-white/15 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] bg-slate-900/40 backdrop-blur-xl">
+                      <div className="w-full z-20">
+                        <div className="glass-panel mt-6 md:mt-0 p-6 sm:p-8 md:p-10 transition-all duration-500 group-hover:-translate-y-2 w-full relative overflow-hidden border border-white/5 group-hover:border-white/15 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] bg-slate-900/40 backdrop-blur-xl">
 
                           {/* Dynamic top-edge beam */}
                           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
