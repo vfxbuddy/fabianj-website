@@ -136,7 +136,7 @@ export function Navbar() {
                   delay: 0.2 // Wait for items to start exiting
                 }
               }}
-              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-sm p-4 flex flex-col pointer-events-auto border-[1.5px] border-[var(--nav-border-color)] bg-slate-950/95 backdrop-blur-3xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
+              className="absolute top-full right-0 mt-3 w-full max-w-[280px] p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/95 backdrop-blur-3xl rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
               style={{ 
                 "--nav-border-color": pathname === "/xr" 
                   ? "rgba(139, 92, 246, 1)" 
@@ -164,7 +164,7 @@ export function Navbar() {
                         className={clsx(
                           "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
                           isActive
-                            ? "bg-white/10 text-white"
+                            ? "bg-[var(--nav-border-color)] text-white shadow-[0_0_15px_rgba(0,0,0,0.2)]"
                             : "text-slate-400 hover:bg-white/5 hover:text-white"
                         )}
                       >
@@ -183,7 +183,7 @@ export function Navbar() {
                     <Link
                       href="/contact"
                       onClick={() => setIsOpen(false)}
-                      className="block w-full text-right rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold transition-transform active:scale-95 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                      className="block w-full text-right rounded-xl border border-white/20 text-white hover:bg-white/5 px-6 py-3 text-sm font-semibold transition-transform active:scale-95"
                     >
                       Let's Talk
                     </Link>
