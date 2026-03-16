@@ -140,7 +140,10 @@ export function Navbar() {
               style={{ 
                 "--nav-border-color": pathname === "/xr" 
                   ? "rgba(139, 92, 246, 1)" 
-                  : "rgba(20, 184, 166, 1)"
+                  : "rgba(20, 184, 166, 1)",
+                "--nav-active-bg": pathname === "/xr"
+                  ? "rgba(139, 92, 246, 0.2)"
+                  : "rgba(20, 184, 166, 0.2)"
               } as React.CSSProperties}
             >
               <div className="flex flex-col gap-1 p-2">
@@ -164,7 +167,7 @@ export function Navbar() {
                         className={clsx(
                           "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
                           isActive
-                            ? "bg-[var(--nav-border-color)] text-white shadow-[0_0_15px_rgba(0,0,0,0.2)]"
+                            ? "bg-[var(--nav-active-bg)] text-white shadow-[0_0_15px_rgba(0,0,0,0.1)]"
                             : "text-slate-400 hover:bg-white/5 hover:text-white"
                         )}
                       >
@@ -183,7 +186,7 @@ export function Navbar() {
                     <Link
                       href="/contact"
                       onClick={() => setIsOpen(false)}
-                      className="block w-full text-right rounded-xl border border-white/20 text-white hover:bg-white/5 px-6 py-3 text-sm font-semibold transition-transform active:scale-95"
+                      className="block w-full text-right rounded-xl px-4 py-3 text-sm font-medium transition-colors text-slate-400 hover:bg-white/5 hover:text-white"
                     >
                       Let's Talk
                     </Link>
