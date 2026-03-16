@@ -185,6 +185,12 @@ export function Hero() {
           className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 perspective-1000"
         >
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
+            {/* Scroll Indicator - Hidden on iPhone size, shown on Tablet+ */}
+          {!isSmallMobile && (
+            <motion.div variants={itemVariants} className="mt-12 w-full flex justify-center">
+              <ScrollIndicator />
+            </motion.div>
+          )}
             {/* Roller Deck Badge — Cycling Shows & Films */}
             <motion.div variants={itemVariants} className="mb-8 flex justify-center w-full">
               <div className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs tracking-widest font-medium text-slate-300 backdrop-blur-md overflow-hidden">
