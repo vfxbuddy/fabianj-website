@@ -116,15 +116,31 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[4.5rem] inset-x-0 mx-auto w-[95%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border border-[var(--nav-border-color)] backdrop-blur-2xl bg-slate-950/60"
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -30, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ 
+              opacity: 1, 
+              y: 0, 
+              scale: 1, 
+              filter: "blur(0px)",
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }
+            }}
+            exit={{ 
+              opacity: 0, 
+              y: -20, 
+              scale: 0.95, 
+              filter: "blur(10px)",
+              transition: { duration: 0.2, ease: "easeIn" }
+            }}
+            className="absolute top-[4.5rem] inset-x-0 mx-auto w-[95%] max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border-[1.5px] border-[var(--nav-border-color)] backdrop-blur-3xl bg-slate-900/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             style={{ 
               "--nav-border-color": pathname === "/xr" 
-                ? "rgba(139, 92, 246, 0.6)" 
-                : "rgba(20, 184, 166, 0.6)"
+                ? "rgba(139, 92, 246, 0.8)" 
+                : "rgba(20, 184, 166, 0.8)"
             } as React.CSSProperties}
           >
             <div className="flex flex-col gap-1 p-2">
@@ -133,9 +149,9 @@ export function Navbar() {
                 return (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.05 + 0.1 }}
                   >
                     <Link
                       href={link.href}
@@ -161,7 +177,7 @@ export function Navbar() {
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="block w-full text-right rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold"
+                    className="block w-full text-right rounded-xl bg-white text-slate-950 px-6 py-3 text-sm font-semibold transition-transform active:scale-95"
                   >
                     Let's Talk
                   </Link>
