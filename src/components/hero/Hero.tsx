@@ -273,7 +273,6 @@ export function Hero() {
             <ScrollIndicator />
           </div>
         )}
->
       </section>
 
       {/* Showreel Modal Overlay */}
