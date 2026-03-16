@@ -195,10 +195,15 @@ export function Hero() {
             "relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 perspective-1000",
             isSmallMobile && "mobile-lite-hero"
           )}
+          style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
         >
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
             {/* Roller Deck Badge — Cycling Shows & Films */}
-            <motion.div variants={itemVariants} className="mb-8 flex justify-center w-full">
+            <motion.div 
+              variants={itemVariants} 
+              className="mb-8 flex justify-center w-full"
+              style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
+            >
               <div className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs tracking-widest font-medium text-slate-300 backdrop-blur-md overflow-hidden">
                 <Sparkles size={14} className="text-teal-400 flex-shrink-0" />
                 <div className="relative h-4 overflow-hidden w-[180px] sm:w-[220px]">
@@ -222,6 +227,7 @@ export function Hero() {
             <motion.h1
               variants={itemVariants}
               className="mb-8 text-5xl font-extrabold tracking-tight text-white sm:text-7xl lg:text-[5.5rem] leading-[1.05] text-center w-full"
+              style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
               Transforming VFX with
               <br />
@@ -230,6 +236,7 @@ export function Hero() {
                 initial={isSmallMobile ? false : { opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={isSmallMobile ? { duration: 0 } : { duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
               >
                 Creative Leadership
               </motion.span>
@@ -239,6 +246,7 @@ export function Hero() {
             <motion.p
               variants={itemVariants}
               className="mb-12 max-w-2xl text-lg text-slate-400 sm:text-xl leading-relaxed text-center px-4 font-light tracking-wide"
+              style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
               Compositing Supervisor | Senior & Lead VFX Compositor | XR Community Builder
             </motion.p>
@@ -247,6 +255,7 @@ export function Hero() {
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full relative z-20"
+              style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
               <button
                 onClick={() => setShowReel(true)}
@@ -281,10 +290,12 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Scroll Hint - Adaptive visibility via CSS and JS */}
-        <div className="scroll-indicator-root hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <ScrollIndicator />
-        </div>
+        {/* Scroll Hint - Adaptive visibility via CSS and Strict JS check */}
+        {!isSmallMobile && (
+          <div className="scroll-indicator-root hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+            <ScrollIndicator />
+          </div>
+        )}
       </section>
 
       {/* Showreel Modal Overlay */}
