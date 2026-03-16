@@ -115,7 +115,7 @@ export function Navbar() {
           {isOpen && (
             <motion.div
               key="mobile-menu"
-              initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(4px)" }}
               animate={{ 
                 opacity: 1, 
                 y: 0, 
@@ -129,16 +129,16 @@ export function Navbar() {
               }}
               exit={{ 
                 opacity: 0, 
-                y: -10, 
-                scale: 0.95, 
-                filter: "blur(10px)",
-                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                y: -60, 
+                scale: 0.9, 
+                filter: "blur(8px)",
+                transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] }
               }}
-              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-sm glass-panel p-2 flex flex-col pointer-events-auto border-2 border-[var(--nav-border-color)] backdrop-blur-3xl bg-slate-950/80 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)]"
+              className="absolute top-full left-0 right-0 mx-auto mt-3 w-full max-w-sm p-4 flex flex-col pointer-events-auto border-2 border-[var(--nav-border-color)] bg-slate-950/95 backdrop-blur-3xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
               style={{ 
                 "--nav-border-color": pathname === "/xr" 
-                  ? "rgba(139, 92, 246, 0.9)" 
-                  : "rgba(20, 184, 166, 0.9)"
+                  ? "rgba(139, 92, 246, 1)" 
+                  : "rgba(20, 184, 166, 1)"
               } as React.CSSProperties}
             >
               <div className="flex flex-col gap-1 p-2">
