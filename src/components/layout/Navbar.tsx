@@ -117,13 +117,11 @@ export function Navbar() {
                 opacity: 0, 
                 rotateX: -90, 
                 transformOrigin: "top",
-                filter: "blur(4px)",
                 scale: 0.9
               }}
               animate={{ 
                 opacity: 1, 
                 rotateX: 0, 
-                filter: "blur(0px)",
                 scale: 1,
                 transition: {
                   type: "spring",
@@ -135,7 +133,6 @@ export function Navbar() {
                 opacity: 0, 
                 rotateX: -90, 
                 scale: 0.9,
-                filter: "blur(8px)",
                 transition: { 
                   duration: 0.3, 
                   ease: "easeInOut",
