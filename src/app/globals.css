@@ -92,18 +92,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Background Glow Optimization for Mobile */
-@media (max-width: 768px) {
-  [class*="bg-teal-500/"], [class*="bg-violet-500/"] {
-    filter: blur(80px) !important;
-    opacity: 0.4 !important;
-  }
-  
-  .glass-panel {
-    backdrop-filter: blur(8px) !important; /* Lighter blur for performance */
-  }
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
