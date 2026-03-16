@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -19,24 +20,29 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 1,
-      ease: [0.16, 1, 0.3, 1] as any, 
-    },
-  },
-};
-
 export function Hero() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [showReel, setShowReel] = useState(false);
   const [currentShow, setCurrentShow] = useState(0);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+      filter: isMobile ? "blur(0px)" : "blur(10px)"
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1] as any,
+      },
+    },
+  };
 
   // Shows & films roller deck
   const shows = [

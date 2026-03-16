@@ -7,10 +7,7 @@ import { NotionModal } from "@/components/ui/NotionModal";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "circOut" } }
-};
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Project {
   title: string;
@@ -62,8 +59,23 @@ const xrProjects: Project[] = [
 ];
 
 export default function XRPage() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const fadeUp: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: isMobile ? "blur(0px)" : "blur(10px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)", 
+      transition: { duration: 0.8, ease: "circOut" } 
+    }
+  };
 
   const openProject = (project: Project) => {
     setActiveProject(project);

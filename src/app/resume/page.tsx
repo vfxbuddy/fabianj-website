@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const PDF_URL = "https://img1.wsimg.com/blobby/go/e218639b-d468-469f-ad19-5f7fec74d0ba/Fabian_Jimenez_Compositor_Resume_2025-3088340.pdf";
 
@@ -97,6 +98,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 
 export default function ResumePage() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -119,8 +121,16 @@ export default function ResumePage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          initial={{ 
+            opacity: 0, 
+            scale: 0.95, 
+            filter: isMobile ? "blur(0px)" : "blur(10px)" 
+          }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1, 
+            filter: "blur(0px)" 
+          }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-24 w-full"
         >

@@ -7,10 +7,7 @@ import { useEffect, useState } from "react";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Clapperboard } from "lucide-react";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "circOut" } }
-};
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface PosterCardProps {
   title: string;
@@ -120,6 +117,22 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
 }
 
 export default function GalleryPage() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const fadeUp: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: isMobile ? "blur(0px)" : "blur(10px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)", 
+      transition: { duration: 0.8, ease: "circOut" } 
+    }
+  };
+
   return (
     <div className="pt-32 pb-48 min-h-screen relative overflow-hidden">
       {/* Background Ambience / Glows */}
