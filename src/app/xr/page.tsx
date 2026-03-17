@@ -100,7 +100,7 @@ export default function XRPage() {
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
               <span className="text-foreground">XR Spatial </span>
-              <span className="text-accent-violet dark:text-gradient-violet">Design</span>
+              <span className="text-gradient-violet">Design</span>
             </h1>
             <p className="text-muted text-lg max-w-2xl mx-auto">
               Welcome to my XR portfolio. I create and prototype immersive augmented and mixed reality experiences bridging the physical and digital.
@@ -127,7 +127,7 @@ export default function XRPage() {
             {xrProjects.map((project, i) => (
               <motion.div variants={fadeUp} key={i} className="h-full">
                 <BentoCard
-                  className="h-full hover:border-violet-500/30 transition-colors cursor-pointer"
+                  className="h-full hover:border-accent-violet/30 transition-colors cursor-pointer"
                   title={project.title}
                   description={project.description}
                   icon={project.badge ? <Trophy size={20} className="text-foreground dark:text-accent-violet" /> : <Box size={20} className="text-foreground dark:text-accent-violet" />}
@@ -170,7 +170,7 @@ export default function XRPage() {
           <div className="mt-32">
             <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
               <h2 className="text-3xl font-bold text-foreground tracking-tight whitespace-nowrap">Technical Case Studies</h2>
-              <div className="h-px flex-1 bg-gradient-to-r from-accent-violet/30 to-transparent" />
+              <div className="h-px flex-1 bg-gradient-to-r from-foreground/10 dark:from-accent-violet/30 to-transparent" />
             </motion.div>
 
             <motion.div
@@ -194,7 +194,7 @@ export default function XRPage() {
 
                 {/* Content Side */}
                 <div className="p-8 md:p-12 flex flex-col justify-center relative">
-                  <div className="inline-flex items-center justify-center p-2.5 rounded-full border border-border bg-foreground/5 text-foreground dark:border-accent-violet/30 dark:bg-accent-violet/10 dark:text-accent-violet mb-6 w-fit h-fit shadow-[0_0_15px_rgba(139,92,246,0.2)] transition-colors">
+                  <div className="inline-flex items-center justify-center p-2.5 rounded-full border border-border bg-foreground/5 text-foreground dark:border-accent-violet/30 dark:bg-accent-violet/10 dark:text-accent-violet mb-6 w-fit h-fit transition-colors">
                     <Video size={16} className="opacity-60 dark:opacity-100" />
                   </div>
 

@@ -189,7 +189,6 @@ body {
   background-clip: text;
 }
 
-
 .text-gradient-violet {
   background: linear-gradient(135deg, var(--color-accent-violet), #f472b6); /* accent-violet to pink tint */
   -webkit-background-clip: text;
