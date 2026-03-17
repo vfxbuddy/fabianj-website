@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import clsx from "clsx";
 import { PersonalLogo } from "@/components/ui/PersonalLogo";
 
@@ -18,6 +19,12 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none">
@@ -28,17 +35,19 @@ export function Navbar() {
         className="mt-6 pointer-events-auto w-[95%] max-w-4xl relative"
       >
         <nav 
-          className="glass-pill backdrop-blur-xl bg-slate-950/50 flex items-center justify-between px-6 py-3"
+          className="glass-pill backdrop-blur-xl flex items-center justify-between px-6 py-3"
           style={{ 
-            "--nav-border-color": pathname === "/xr" 
-              ? "rgba(139, 92, 246, 0.6)" // Violet-500 at 60%
-              : "rgba(20, 184, 166, 0.6)"  // Teal-500 at 60%
+            "--nav-border-color": mounted && theme === "light"
+              ? "rgba(0, 0, 0, 0.3)" // Strong black border in light mode
+              : pathname === "/xr" 
+                ? "rgba(139, 92, 246, 0.6)" 
+                : "rgba(20, 184, 166, 0.6)"
           } as React.CSSProperties}
         >
-          {/* ... existing logo and desktop links ... */}
+          {/* Logo */}
           <Link
             href="/"
-            className="text-base font-bold tracking-[0.15em] text-white transition-opacity hover:opacity-80 flex items-center gap-2 group"
+            className="text-base font-bold tracking-[0.15em] text-foreground transition-opacity hover:opacity-80 flex items-center gap-2 group"
           >
             <PersonalLogo 
               themeColor={pathname === "/xr" ? "violet" : "teal"} 
@@ -46,12 +55,14 @@ export function Navbar() {
             />
             FABIAN <span className={clsx(
               "font-normal transition-colors",
-              pathname === "/xr" ? "text-violet-500 group-hover:text-violet-400" : "text-teal-400 group-hover:text-teal-300"
+              pathname === "/xr" 
+                ? "text-accent-violet group-hover:opacity-70" 
+                : "text-accent-teal group-hover:opacity-70"
             )}>JIMENEZ</span>
           </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden items-center gap-2 md:flex">
+          {/* Desktop Links & Tools */}
+          <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -61,8 +72,8 @@ export function Navbar() {
                   className={clsx(
                     "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center",
                     isActive 
-                      ? (link.href === "/xr" ? "text-violet-400 font-medium" : "text-teal-400 font-medium")
-                      : (link.href === "/xr" ? "text-slate-400 hover:text-violet-400" : "text-slate-400 hover:text-teal-400")
+                      ? (link.href === "/xr" ? "text-accent-violet font-medium" : "text-accent-teal font-medium")
+                      : (link.href === "/xr" ? "text-muted hover:text-accent-violet" : "text-muted hover:text-accent-teal")
                   )}
                 >
                   <span className="relative z-10">{link.label}</span>
@@ -72,7 +83,9 @@ export function Navbar() {
                       layoutId="nav-indicator"
                       className={clsx(
                         "absolute inset-0 transition-colors duration-300 rounded-full",
-                        link.href === "/xr" ? "bg-violet-500/10 group-hover:bg-violet-500/20" : "bg-teal-500/10 group-hover:bg-teal-500/20"
+                        link.href === "/xr" 
+                          ? "bg-accent-violet/10 dark:bg-accent-violet/10 group-hover:bg-accent-violet/20" 
+                          : "bg-accent-teal/10 dark:bg-accent-teal/10 group-hover:bg-accent-teal/20"
                       )}
                       transition={{
                         type: "spring",
@@ -90,24 +103,56 @@ export function Navbar() {
               );
             })}
             
-            <div className="w-px h-5 bg-white/10 mx-2" />
+            <div className="w-px h-5 bg-border mx-2" />
             
+            {/* Theme Toggle Desktop */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full text-muted transition-colors hover:bg-foreground/10 hover:text-foreground"
+              aria-label="Toggle theme"
+            >
+              {!mounted ? (
+                <div className="w-[18px] h-[18px]" />
+              ) : theme === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Moon size={18} />
+              )}
+            </button>
+
             <Link
               href="/contact"
-              className="ml-2 rounded-full bg-white text-slate-950 px-5 py-2 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+              className="ml-2 rounded-full bg-foreground text-background px-5 py-2 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
             >
               Let's Talk
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative z-50 rounded-full p-2 text-slate-300 transition-colors hover:bg-white/10 md:hidden"
-            aria-label="Toggle navigation"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile Right Tools */}
+          <div className="flex items-center gap-2 md:hidden">
+            {/* Theme Toggle Mobile */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full text-muted transition-colors hover:bg-foreground/10 hover:text-foreground"
+              aria-label="Toggle theme"
+            >
+              {!mounted ? (
+                <div className="w-[18px] h-[18px]" />
+              ) : theme === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Moon size={18} />
+              )}
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative z-50 rounded-full p-2 text-muted transition-colors hover:bg-white/10"
+              aria-label="Toggle navigation"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>        {/* Mobile Menu - Mechanical Pivot Implementation */}
         <AnimatePresence>
           {isOpen && (
@@ -142,12 +187,16 @@ export function Navbar() {
               className="absolute top-full left-0 right-0 mx-auto mt-3 w-full p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-[2rem] shadow-[20px_40px_80px_-15px_rgba(0,0,0,0.8)]"
               style={{ 
                 perspective: "1000px",
-                "--nav-border-color": pathname === "/xr" 
-                  ? "rgba(139, 92, 246, 0.6)" 
-                  : "rgba(20, 184, 166, 0.6)",
-                "--nav-active-bg": pathname === "/xr"
-                  ? "rgba(139, 92, 246, 0.2)"
-                  : "rgba(20, 184, 166, 0.2)"
+                "--nav-border-color": mounted && theme === "light"
+                  ? "rgba(0, 0, 0, 0.3)"
+                  : pathname === "/xr" 
+                    ? "rgba(139, 92, 246, 0.6)" 
+                    : "rgba(20, 184, 166, 0.6)",
+                "--nav-active-bg": mounted && theme === "light"
+                  ? "rgba(0, 0, 0, 0.1)"
+                  : pathname === "/xr"
+                    ? "rgba(139, 92, 246, 0.2)"
+                    : "rgba(20, 184, 166, 0.2)"
               } as React.CSSProperties}
             >
               <div className="flex flex-col gap-1 p-2">
@@ -171,8 +220,8 @@ export function Navbar() {
                         className={clsx(
                           "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
                           isActive
-                            ? "bg-[var(--nav-active-bg)] text-white shadow-[0_0_15px_rgba(0,0,0,0.1)]"
-                            : "text-slate-400 hover:bg-white/5 hover:text-white"
+                            ? "bg-[var(--nav-active-bg)] text-foreground shadow-[0_0_15px_rgba(0,0,0,0.1)]"
+                            : "text-muted hover:bg-foreground/5 hover:text-foreground"
                         )}
                       >
                         {link.label}

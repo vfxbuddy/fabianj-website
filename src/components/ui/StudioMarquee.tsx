@@ -25,12 +25,12 @@ export function StudioMarquee() {
   const allStudios = [...studios, ...studios];
 
   return (
-    <section className="relative py-16 overflow-hidden border-t border-b border-white/5">
+    <section className="relative py-16 overflow-hidden border-t border-b border-border">
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
-      <p className="text-center text-[10px] font-semibold tracking-[0.3em] text-slate-600 uppercase mb-10">
+      <p className="text-center text-[10px] font-semibold tracking-[0.3em] text-muted/60 uppercase mb-10">
         Studios & Companies
       </p>
 
@@ -49,7 +49,7 @@ export function StudioMarquee() {
         {allStudios.map((studio, i) => (
           <span
             key={i}
-            className="text-slate-500 text-lg sm:text-xl font-medium tracking-wide hover:text-white transition-colors duration-300 cursor-default select-none flex-shrink-0 pr-24 sm:pr-32"
+            className="text-muted text-lg sm:text-xl font-medium tracking-wide hover:text-foreground transition-colors duration-300 cursor-default select-none flex-shrink-0 pr-24 sm:pr-32"
           >
             {studio}
           </span>

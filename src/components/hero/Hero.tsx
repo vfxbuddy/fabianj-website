@@ -11,12 +11,15 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 
 import clsx from "clsx";
+import { useTheme } from "next-themes";
 
 export function Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isSmallMobile = useMediaQuery("(max-width: 640px)");
   const [showReel, setShowReel] = useState(false);
   const [currentShow, setCurrentShow] = useState(0);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -123,11 +126,11 @@ export function Hero() {
   // Background glow that follows mouse
   const backgroundGradient = useTransform(
     [springX, springY],
-    ([x, y]) => `radial-gradient(800px circle at ${x}px ${y}px, rgba(45, 212, 191, 0.12), transparent 40%)`
+    ([x, y]) => mounted && theme === "light"
+      ? `radial-gradient(800px circle at ${x}px ${y}px, rgba(0, 0, 0, 0.05), transparent 40%)`
+      : `radial-gradient(800px circle at ${x}px ${y}px, rgba(45, 212, 191, 0.12), transparent 40%)`
   );
 
-  const [mounted, setMounted] = useState(false);
-  
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -165,9 +168,9 @@ export function Hero() {
             title="Background Showreel"
             style={{ border: 0 }}
           />
-          {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-slate-950/75" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950" />
+          {/* Theme-aware overlay for readability */}
+          <div className="absolute inset-0 bg-background/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
         </div>
 
         {/* Dynamic Background Glow following mouse softly */}
@@ -204,8 +207,8 @@ export function Hero() {
               className="mb-8 flex justify-center w-full"
               style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
-              <div className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs tracking-widest font-medium text-slate-300 backdrop-blur-md overflow-hidden">
-                <Sparkles size={14} className="text-teal-400 flex-shrink-0" />
+              <div className="inline-flex items-center justify-center gap-2 rounded-full border border-border/50 bg-foreground/5 dark:bg-accent-teal/10 px-5 py-2 text-xs tracking-widest font-medium text-foreground/60 dark:text-accent-teal/80 backdrop-blur-md overflow-hidden transition-colors">
+                <Sparkles size={14} className="text-accent-teal flex-shrink-0" />
                 <div className="relative h-4 overflow-hidden w-[180px] sm:w-[220px]">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -214,7 +217,7 @@ export function Hero() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-0 flex items-center justify-center uppercase text-teal-300 whitespace-nowrap"
+                      className="absolute inset-0 flex items-center justify-center uppercase text-accent-teal whitespace-nowrap"
                     >
                       {shows[currentShow]}
                     </motion.span>
@@ -226,7 +229,7 @@ export function Hero() {
             {/* Main Title */}
             <motion.h1
               variants={itemVariants}
-              className="mb-8 text-5xl font-extrabold tracking-tight text-white sm:text-7xl lg:text-[5.5rem] leading-[1.05] text-center w-full"
+              className="mb-8 text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl lg:text-[5.5rem] leading-[1.05] text-center w-full"
               style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
               Transforming VFX with
@@ -245,7 +248,7 @@ export function Hero() {
             {/* Subtitle */}
             <motion.p
               variants={itemVariants}
-              className="mb-12 max-w-2xl text-lg text-slate-400 sm:text-xl leading-relaxed text-center px-4 font-light tracking-wide"
+              className="mb-12 max-w-2xl text-lg text-muted sm:text-xl leading-relaxed text-center px-4 font-light tracking-wide"
               style={isSmallMobile ? { opacity: 1, transform: "none", filter: "none" } : {}}
             >
               Compositing Supervisor | Senior & Lead VFX Compositor | XR Community Builder
@@ -261,18 +264,18 @@ export function Hero() {
                 onClick={() => setShowReel(true)}
                 className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full btn-primary px-8 py-4 text-sm font-semibold text-white transition-all hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-teal-600 shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-shadow group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)]">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-shadow group-hover:shadow-[0_0_25px_rgba(255,255,255,0.8)] dark:text-teal-600">
                   <Play size={12} className="ml-0.5" />
                 </div>
                 Watch Showreel
               </button>
               <Link
                 href="/resume"
-                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-slate-700 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-slate-500 overflow-hidden"
+                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-border bg-foreground/[0.03] px-8 py-4 text-sm font-semibold text-foreground transition-all hover:border-muted overflow-hidden"
               >
                 {/* Background Hover Glow */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-teal-500/10 via-teal-500/20 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-r from-accent-teal/10 via-accent-teal/20 to-accent-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   layoutId="buttonGlow"
                 />
                 
@@ -320,7 +323,7 @@ export function Hero() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed inset-8 md:inset-16 lg:inset-20 z-[101] flex items-center justify-center"
             >
-              <div className="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-teal-500/10">
+              <div className="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-accent-teal/10">
                 <iframe
                   src="https://player.vimeo.com/video/952510254?autoplay=1&title=0&byline=0&portrait=0&badge=0&dnt=1&transparent=1&share=0&pip=0&watch_later=0&vimeo_logo=0&buttons.like=0&buttons.watchlater=0&buttons.share=0"
                   className="absolute inset-0 w-full h-full"

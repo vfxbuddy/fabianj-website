@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Loader2 } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
+import { useTheme } from "next-themes";
 import { NotionRenderer as Renderer } from "react-notion-x";
 import type { ExtendedRecordMap } from "notion-types";
 
@@ -19,6 +20,8 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
   const [recordMap, setRecordMap] = useState<ExtendedRecordMap | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
 
   const fetchPage = useCallback(async () => {
     setLoading(true);
@@ -72,7 +75,7 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md"
+            className={isLight ? "fixed inset-0 z-[100] bg-black/30 backdrop-blur-md" : "fixed inset-0 z-[100] bg-black/80 backdrop-blur-md"}
             onClick={onClose}
           />
 
@@ -82,24 +85,41 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-4 md:inset-8 lg:inset-12 z-[101] rounded-3xl overflow-hidden bg-slate-950/95 backdrop-blur-sm flex flex-col shadow-2xl border border-white/10"
+            className="fixed inset-4 md:inset-8 lg:inset-12 z-[101] rounded-3xl overflow-hidden flex flex-col shadow-2xl"
+            style={{
+              background: isLight ? "#E0D9CE" : "rgba(2, 0, 14, 0.97)",
+              border: isLight ? "1px solid rgba(0,0,0,0.1)" : "1px solid rgba(255,255,255,0.08)",
+            }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-950/90 backdrop-blur-sm shrink-0">
-              <h3 className="text-white font-semibold text-lg truncate">{title}</h3>
+            <div
+              className="flex items-center justify-between px-6 py-4 border-b shrink-0"
+              style={{
+                background: isLight ? "#D4CDC0" : "rgba(2, 0, 14, 0.92)",
+                borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.08)",
+              }}
+            >
+              <h3
+                className="font-semibold text-lg truncate"
+                style={{ color: isLight ? "#000000" : "#ffffff" }}
+              >
+                {title}
+              </h3>
               <div className="flex items-center gap-2">
                 <a
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="p-2 rounded-full transition-colors"
+                  style={{ color: isLight ? "#525252" : "#94a3b8" }}
                   title="Open in new tab"
                 >
                   <ExternalLink size={18} />
                 </a>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="p-2 rounded-full transition-colors"
+                  style={{ color: isLight ? "#525252" : "#94a3b8" }}
                 >
                   <X size={20} />
                 </button>
@@ -119,14 +139,17 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
               .notion-container .notion-full-page {
                 background-color: transparent !important;
               }
-              /* Ensure text is readable */
               .notion-container .notion-header {
                 display: none !important;
               }
             `}</style>
-            <div 
-              className="flex-1 overflow-y-auto notion-container" 
-              style={{ background: "radial-gradient(circle at top, #110022 0%, #000000 100%)" }}
+            <div
+              className="flex-1 overflow-y-auto notion-container"
+              style={{
+                background: isLight
+                  ? "#E0D9CE"
+                  : "radial-gradient(circle at top, #110022 0%, #000000 100%)",
+              }}
             >
               {loading && (
                 <div className="flex items-center justify-center h-full min-h-[300px]">
@@ -152,7 +175,7 @@ export function NotionModal({ isOpen, onClose, url, title }: NotionModalProps) {
                 <Renderer
                   recordMap={recordMap}
                   fullPage={true}
-                  darkMode={true}
+                  darkMode={!isLight}
                   disableHeader={true}
                 />
               )}

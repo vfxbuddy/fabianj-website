@@ -13,9 +13,10 @@ interface BentoCardProps {
   icon?: React.ReactNode;
   delay?: number;
   backgroundImage?: string;
+  vimeoId?: string;
 }
 
-export function BentoCard({ title, description, className, children, icon, delay = 0, backgroundImage }: BentoCardProps) {
+export function BentoCard({ title, description, className, children, icon, delay = 0, backgroundImage, vimeoId }: BentoCardProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -38,28 +39,39 @@ export function BentoCard({ title, description, className, children, icon, delay
         className
       )}
     >
-      {/* Background Image with B&W → Color Hover */}
-      {backgroundImage && (
+      {/* Background Media with B&W → Color Hover */}
+      {(backgroundImage || vimeoId) && (
         <div className="absolute inset-0 z-0 rounded-[24px] overflow-hidden">
-          <Image
-            src={backgroundImage}
-            alt=""
-            fill
-            className="object-cover img-bw-hover opacity-40 group-hover:opacity-70 transition-opacity duration-600"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent" />
+          {vimeoId ? (
+            <div className="absolute inset-0 w-full h-full">
+              <iframe
+                src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&dnt=1`}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 mix-blend-screen"
+                allow="autoplay; fullscreen"
+                style={{ border: 0 }}
+              />
+            </div>
+          ) : backgroundImage && (
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              className="object-cover img-bw-hover opacity-40 group-hover:opacity-70 transition-opacity duration-600"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
         </div>
       )}
 
       {/* Spotlight Hover Effect */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[23px] opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-[23px] opacity-0 transition duration-300 dark:group-hover:opacity-100 group-hover:opacity-40"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(45, 212, 191, 0.15),
+              rgba(var(--accent-spotlight, 45, 212, 191), 0.15),
               transparent 80%
             )
           `,
@@ -70,21 +82,21 @@ export function BentoCard({ title, description, className, children, icon, delay
       
       <div className="relative z-10 w-full h-full flex flex-col">
         {icon && (
-          <div className="mb-6 h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-teal-400 group-hover:scale-110 group-hover:bg-teal-500/10 transition-all duration-500 shadow-[0_4px_20px_transparent] group-hover:shadow-[0_4px_20px_rgba(45,212,191,0.2)]">
+          <div className="mb-6 h-12 w-12 rounded-2xl bg-foreground/5 border border-border flex items-center justify-center text-accent-teal group-hover:scale-110 group-hover:bg-accent-teal/5 transition-all duration-500">
             {icon}
           </div>
         )}
 
-        <h3 className="text-2xl font-bold tracking-tight text-white mb-3">
+        <h3 className="text-2xl font-bold tracking-tight text-foreground mb-3">
           {title}
         </h3>
         
-        <p className="text-slate-400 text-base leading-relaxed flex-grow">
+        <p className="text-muted text-base leading-relaxed flex-grow">
           {description}
         </p>
 
         {children && (
-          <div className="mt-8 w-full border-t border-white/10 pt-6">
+          <div className="mt-8 w-full border-t border-border pt-6">
             {children}
           </div>
         )}

@@ -18,10 +18,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <FadeIn direction="up">
             <div className="text-center max-w-2xl mx-auto mb-20">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
                 Featured <span className="text-gradient-accent">Supervision</span>
               </h2>
-              <p className="text-slate-400 text-lg leading-relaxed">
+              <p className="text-muted text-lg leading-relaxed">
                 Leading talented compositing teams to pull off the impossible on tight episodic deadlines.
               </p>
             </div>
@@ -57,7 +57,7 @@ export default function Home() {
             <div className="mt-16 text-center">
               <Link 
                 href="/gallery"
-                className="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 font-semibold tracking-wide transition-colors group"
+                className="inline-flex items-center gap-2 text-accent-teal hover:opacity-70 font-semibold tracking-wide transition-colors group"
               >
                 View Full Gallery
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -76,15 +76,15 @@ export default function Home() {
 
         <FadeIn direction="up" className="relative z-10">
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2 className="text-4xl font-bold text-white mb-8">
+            <h2 className="text-4xl font-bold text-foreground mb-8">
               <TextReveal text="Ready to elevate your project?" />
             </h2>
-            <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-muted mb-10 max-w-2xl mx-auto">
               Partner with me for your compositing needs. Together, we'll craft seamless VFX with inspiring creative leadership.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full btn-primary px-10 py-5 text-lg font-bold text-white transition-transform hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:shadow-[0_0_35px_rgba(45,212,191,0.5)]"
+              className="inline-flex items-center justify-center rounded-full btn-primary px-10 py-5 text-lg font-bold text-background transition-transform hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:shadow-[0_0_35px_rgba(45,212,191,0.5)]"
             >
               Let's work together
             </Link>

@@ -188,10 +188,16 @@
   "freelance": [
     {
       "title": "The Clawcade",
-      "type": "Recap of the Grand Opening",
+      "type": "The Grand Opening - Recap Video",
       "vimeoId": "1003289299",
-      "services": ["Video", "Aerial Photography", "Gaussian Captures", "Editing", "Graphics"],
-      "description": "A recap of the grand opening of The Clawcade, showcasing high-energy arcade production and immersive venue coverage."
+      "services": [
+        "Video",
+        "Aerial Photography",
+        "Gaussian Captures",
+        "Editing",
+        "Graphics"
+      ],
+      "description": "Leading the end-to-end content production for The Clawcade’s grand opening. This case study highlights the use of 3D Gaussian splats and aerial cinematography to capture the scale and high-octane energy of the venue’s debut."
     }
   ]
 }

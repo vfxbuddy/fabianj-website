@@ -10,8 +10,8 @@ interface PersonalLogoProps {
 
 export function PersonalLogo({ className, themeColor = "white" }: PersonalLogoProps) {
   const colorMap = {
-    teal: "stroke-teal-400 fill-teal-400",
-    violet: "stroke-violet-500 fill-violet-500",
+    teal: "stroke-accent-teal fill-accent-teal",
+    violet: "stroke-accent-violet fill-accent-violet",
     white: "stroke-white fill-white",
   };
 

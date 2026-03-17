@@ -5,10 +5,51 @@
    Premium Dark Theme & Gradients
    ============================== */
 
+:root {
+  /* Default: Dark Theme */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --text-main: #fafafa;
+  --text-muted: #a3a3a3;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --panel-bg: rgba(23, 23, 23, 0.4);
+  --panel-border: rgba(255, 255, 255, 0.06);
+  --nav-bg: rgba(5, 5, 5, 0.5);
+  --glass-blur: 24px;
+  --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --accent-primary: #14b8a6;
+  --accent-secondary: #8b5cf6;
+  --accent-rgb: 45, 212, 191;
+  --footer-bg: #ffffff;
+  --footer-text-main: #000000;
+  --footer-text-muted: #525252;
+}
+
+.light {
+  /* Architectural Cream Theme - High Contrast Refinement */
+  --bg-primary: #E0D9CE; 
+  --bg-secondary: #D4CDC0;
+  --text-main: #000000;      /* Pure black for icons and text */
+  --text-muted: #2A2A2A;    /* Very dark grey for secondary text */
+  --border-color: rgba(0, 0, 0, 0.25); /* More prominent black borders */
+  --panel-bg: rgba(255, 255, 255, 0.5);
+  --panel-border: rgba(0, 0, 0, 0.15);
+  --nav-bg: #CCC6BA;        /* Darker tone for Navbar contrast */
+  --selection-bg: var(--text-main);
+  --selection-text: var(--bg-primary);
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  --accent-primary: #000000;
+  --accent-secondary: #8b5cf6;
+  --accent-rgb: 139, 92, 246;
+  --footer-bg: #ffffff;
+  --footer-text-main: #000000;
+  --footer-text-muted: #525252;
+}
+
 @theme inline {
   /* Deep Dark Palette - Framer Style */
-  --color-slate-950: #050505;
-  --color-slate-900: #0a0a0a;
+  --color-slate-950: var(--bg-primary);
+  --color-slate-900: var(--bg-secondary);
   --color-slate-800: #171717;
   --color-slate-700: #262626;
   --color-slate-600: #404040;
@@ -29,11 +70,11 @@
   --color-violet-400: #a78bfa;
 
   /* Semantic Colors */
-  --color-background: #050505; /* Deep rich black */
-  --color-foreground: #fafafa;
-  --color-muted: #a3a3a3;
-  --color-surface: #0a0a0a;    /* Elevated surface */
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-main);
+  --color-muted: var(--text-muted);
+  --color-surface: var(--bg-secondary);
+  --color-border: var(--border-color);
 
   /* Typography */
   --font-sans: var(--font-inter);
@@ -44,6 +85,9 @@
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-breathe: breathe 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --color-accent-teal: var(--accent-primary);
+  --color-accent-violet: var(--accent-secondary);
+  --accent-spotlight: var(--accent-rgb);
 }
 
 /* Keyframes */
@@ -145,9 +189,23 @@ body {
   background-clip: text;
 }
 
+
+.text-gradient-violet {
+  background: linear-gradient(135deg, var(--color-accent-violet), #f472b6); /* accent-violet to pink tint */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Solid Gradient Button */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-teal-500), #0d9488);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(224, 217, 206, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root .btn-primary {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
   box-shadow: 0 4px 14px 0 rgba(20, 184, 166, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.1);
 }
@@ -160,20 +218,25 @@ body {
 
 /* Glass Panels & Bento Boxes */
 .glass-panel {
-  background: rgba(23, 23, 23, 0.4); /* slate-800 with opacity */
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: var(--panel-bg);
+  backdrop-filter: blur(var(--glass-blur, 24px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 24px));
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--card-shadow);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .glass-panel:hover {
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.light .glass-panel:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
 /* Spotlight for Bento Cards (will be controlled via React) */
@@ -185,6 +248,7 @@ body {
   padding: 1px;
   background: transparent;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
@@ -202,6 +266,7 @@ body {
   filter: blur(1px);
 }
 
+
 /* Ambient Background Glows */
 .ambient-glow {
   position: absolute;
@@ -210,6 +275,11 @@ body {
   pointer-events: none;
   z-index: 0;
   opacity: 0.4;
+  transition: opacity 0.5s ease;
+}
+
+.light .ambient-glow {
+  opacity: 0.15; /* Subtler in Light mode */
 }
 
 .glow-teal {
@@ -222,12 +292,12 @@ body {
 
 /* Floating Glass Pill Nav */
 .glass-pill {
-  background: rgba(5, 5, 5, 0.5); /* Lighter opacity for better blur visibility */
+  background: var(--nav-bg);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid var(--nav-border-color, rgba(255, 255, 255, 0.12));
-  transition: border-color 0.5s ease;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--nav-border-color, var(--border-color));
+  transition: border-color 0.5s ease, background 0.3s ease;
+  box-shadow: var(--card-shadow);
   border-radius: 9999px;
 }
 
@@ -279,9 +349,9 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(45, 212, 191, 0.1) 20%,
-    rgba(45, 212, 191, 0.8) 50%,
-    rgba(45, 212, 191, 0.1) 80%,
+    rgba(0, 0, 0, 0.05) 20%,
+    var(--accent-primary) 50%,
+    rgba(0, 0, 0, 0.05) 80%,
     transparent
   );
   transform: rotate(25deg);
@@ -306,9 +376,9 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(139, 92, 246, 0.1) 20%,
-    rgba(139, 92, 246, 0.8) 50%,
-    rgba(139, 92, 246, 0.1) 80%,
+    rgba(0, 0, 0, 0.05) 20%,
+    var(--accent-secondary) 50%,
+    rgba(0, 0, 0, 0.05) 80%,
     transparent
   );
   transform: rotate(25deg);
