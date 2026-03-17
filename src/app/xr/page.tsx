@@ -146,7 +146,7 @@ export default function XRPage() {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={(e) => { e.stopPropagation(); openProject(project); }}
-                        className="px-3 py-1.5 rounded-full bg-foreground/5 text-xs font-medium hover:bg-foreground/10 transition-colors border border-accent-violet"
+                        className="px-3 py-1.5 rounded-full bg-foreground/5 text-xs font-medium hover:bg-foreground/10 transition-colors border border-foreground/20 dark:border-accent-violet"
                         style={{ color: 'var(--color-foreground)' }}
                       >
                         Preview
@@ -232,7 +232,7 @@ export default function XRPage() {
                     <div className="pt-6">
                       <button
                         onClick={() => setGaussianModalOpen(true)}
-                        className="group relative inline-flex items-center justify-center px-10 py-4 rounded-[24px] bg-transparent font-bold text-sm tracking-tight hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden border-2 border-accent-violet text-foreground dark:text-accent-violet"
+                        className="group relative inline-flex items-center justify-center px-10 py-4 rounded-[24px] bg-transparent font-bold text-sm tracking-tight hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden border-2 border-foreground dark:border-accent-violet text-foreground dark:text-accent-violet"
                       >
                         <div className="absolute inset-0 bg-foreground/5 dark:bg-accent-violet/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         Preview Gaussian Captures
