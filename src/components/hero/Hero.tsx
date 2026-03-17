@@ -162,7 +162,7 @@ export function Hero() {
         {/* Background Autoplay Video — Muted, Looping, Cinematic */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <iframe
-            src="https://player.vimeo.com/video/952510254?background=1&autoplay=1&loop=1&muted=1&quality=720p&dnt=1#t=5s"
+            src="https://player.vimeo.com/video/952510254?background=1&autoplay=1&loop=1&muted=1&quality=720p&dnt=1#t=10s"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full"
             allow="autoplay"
             title="Background Showreel"
