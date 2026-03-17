@@ -1,11 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useTheme } from "next-themes";
 
 export function GlobalGrid() {
   const pathname = usePathname();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isLight = mounted && resolvedTheme === "light";
   
   // Track mouse for the ambient cursor glow
   const mouseX = useMotionValue(0);
@@ -34,6 +43,13 @@ export function GlobalGrid() {
   const backgroundGradient = useTransform(
     [springX, springY],
     ([x, y]) => {
+      if (!mounted) return "none";
+
+      // Lite mode: subtle dark cursor glow
+      if (isLight) {
+        return `radial-gradient(800px circle at ${x}px ${y}px, rgba(0, 0, 0, 0.05), transparent 40%)`;
+      }
+
       let glowColor = "rgba(45, 212, 191, 0.08)"; // Default teal hint
       
       if (pathname === "/xr") {
@@ -52,14 +68,16 @@ export function GlobalGrid() {
   // (We still return the wrapper div below so the global cursor glow works on the homepage)
   const isHome = pathname === "/";
 
-  // Default grid color (subtle white)
-  let gridColor = "rgba(255, 255, 255, 0.05)"; 
+  // Default grid color
+  let gridColor = isLight ? "rgba(0, 0, 0, 0.05)" : "rgba(255, 255, 255, 0.05)"; 
 
-  // Dynamic route-based tinting (toned down for subtlety)
-  if (pathname === "/xr") {
-    gridColor = "rgba(168, 85, 247, 0.1)"; // Brighter purple for XR
-  } else if (pathname === "/resume") {
-    gridColor = "rgba(45, 212, 191, 0.06)"; // Ultra-subtle teal
+  // Dynamic route-based tinting (only for Dark mode to maintain minimalism in Lite)
+  if (!isLight) {
+    if (pathname === "/xr") {
+      gridColor = "rgba(168, 85, 247, 0.1)"; // Brighter purple for XR
+    } else if (pathname === "/resume") {
+      gridColor = "rgba(45, 212, 191, 0.06)"; // Ultra-subtle teal
+    }
   }
 
   return (
