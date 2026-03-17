@@ -1,4 +1,5 @@
 "use client";
+// Force fresh deployment to sync with local styles
 
 import { motion, Variants } from "framer-motion";
 import { ArrowUpRight, Box, Trophy, Sparkles, MonitorPlay, Video } from "lucide-react";
