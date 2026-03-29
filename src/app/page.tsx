@@ -1,10 +1,12 @@
 import { Hero } from "@/components/hero/Hero";
 import { BentoCard } from "@/components/ui/BentoCard";
-import { StudioMarquee } from "@/components/ui/StudioMarquee";
-import { GallerySection } from "@/components/sections/GallerySection";
-import { XRSection } from "@/components/sections/XRSection";
-import { ResumeSection } from "@/components/sections/ResumeSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import dynamic from "next/dynamic";
+
+const StudioMarquee = dynamic(() => import("@/components/ui/StudioMarquee").then((mod) => mod.StudioMarquee));
+const GallerySection = dynamic(() => import("@/components/sections/GallerySection").then((mod) => mod.GallerySection));
+const XRSection = dynamic(() => import("@/components/sections/XRSection").then((mod) => mod.XRSection));
+const ResumeSection = dynamic(() => import("@/components/sections/ResumeSection").then((mod) => mod.ResumeSection));
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection").then((mod) => mod.ContactSection));
 import { Layers, MonitorPlay, Zap } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TextReveal } from "@/components/ui/TextReveal";

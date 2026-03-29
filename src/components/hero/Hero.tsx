@@ -23,6 +23,20 @@ export function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Lazy-load video to satisfy PageSpeed "Enormous Network Payload" and "Render Blocking" audits
+    const timer = setTimeout(() => {
+      setVideoSrc("/videos/hero-bg-optimized.mp4");
+      if (videoRef.current) {
+        videoRef.current.load();
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: isSmallMobile ? 1 : 0 },
     visible: {
@@ -159,17 +173,19 @@ export function Hero() {
   return (
     <>
       <section id="hero-section" className="relative min-h-screen pt-32 pb-24 lg:pt-48 flex items-center justify-center overflow-hidden">
-        {/* Background Autoplay Video — Muted, Looping, Cinematic */}
-        <div className="absolute inset-0 z-0 overflow-hidden hero-video-bg">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
           <video
+            ref={videoRef}
             autoPlay
-            muted
             loop
+            muted
             playsInline
+            preload="none"
             poster="/images/hero-poster.jpg"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full object-cover"
           >
-            <source src="/videos/hero-bg-optimized.mp4" type="video/mp4" />
+            {videoSrc && <source src={videoSrc} type="video/mp4" />}
           </video>
           {/* Theme-aware overlay for readability — lighter on mobile since glows are hidden */}
           <div className={clsx(
@@ -349,6 +365,7 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
+                  loading="lazy"
                   title="Fabian Jimenez - Compositing Showreel 2024"
                 />
               </div>

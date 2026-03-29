@@ -38,10 +38,10 @@
   --bg-primary: #E0D9CE; 
   --bg-secondary: #D4CDC0;
   --text-main: #000000;      /* Pure black for high contrast */
-  --text-muted: #2A2A2A;    /* Very dark grey for secondary text */
-  --border-low: rgba(0, 0, 0, 0.25); /* Prominent black borders */
+  --text-muted: #1A1A1A;    /* Very dark grey for secondary text */
+  --border-low: rgba(0, 0, 0, 0.4); /* Prominent black borders */
   --panel-bg: rgba(255, 255, 255, 0.5);
-  --panel-border: rgba(0, 0, 0, 0.15);
+  --panel-border: rgba(0, 0, 0, 0.25);
   --nav-bg: #CCC6BA;        /* Darker tone for Navbar contrast */
   --selection-bg: var(--text-main);
   --selection-text: var(--bg-primary);
