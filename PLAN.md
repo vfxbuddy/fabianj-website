@@ -48,7 +48,7 @@
 ## Proposed Directory Structure
 
 ```
-c:\Antigravity\Website\
+c:\Antigravity\website\
 ├── .migration_assets/          # Scraped content (already created)
 ├── public/
 │   ├── fonts/

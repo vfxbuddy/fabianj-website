@@ -6,7 +6,7 @@ import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen relative overflow-hidden flex items-center justify-center">
+    <main className="pt-32 pb-24 min-h-screen relative overflow-hidden flex items-center justify-center">
       {/* Background Ambience */}
       <div className="absolute bottom-[0%] left-[10%] w-[600px] h-[600px] bg-teal-500/[0.03] dark:bg-teal-500/10 rounded-full blur-[150px] pointer-events-none" />
       
@@ -82,6 +82,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

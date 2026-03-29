@@ -19,7 +19,7 @@ function PosterCard({ title, year, poster }: PosterCardProps) {
   if (!poster) return null;
 
   return (
-    <div
+    <article
       className="group relative w-[200px] sm:w-[300px] aspect-[2/3] rounded-xl overflow-hidden glass-panel border border-white/5 hover:border-teal-400/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8)] flex-shrink-0 hover:z-[50]"
     >
       <Image
@@ -44,7 +44,7 @@ function PosterCard({ title, year, poster }: PosterCardProps) {
 
       {/* Subtle border shine on hover */}
       <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 transition-colors pointer-events-none rounded-xl" />
-    </div>
+    </article>
   );
 }
 
@@ -134,7 +134,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="pt-32 pb-48 min-h-screen relative overflow-hidden">
+    <main className="pt-32 pb-48 min-h-screen relative overflow-hidden">
       {/* Background Ambience / Glows */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-teal-500/[0.03] dark:bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/[0.03] dark:bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
@@ -198,6 +198,6 @@ export default function GalleryPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

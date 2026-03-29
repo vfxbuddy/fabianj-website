@@ -63,45 +63,48 @@ export function Navbar() {
 
           {/* Desktop Links & Tools */}
           <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={clsx(
-                    "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center",
-                    isActive 
-                      ? (link.href === "/xr" ? "text-accent-violet font-medium" : "text-accent-teal font-medium")
-                      : (link.href === "/xr" ? "text-muted hover:text-accent-violet" : "text-muted hover:text-accent-teal")
-                  )}
-                >
-                  <span className="relative z-10">{link.label}</span>
-                  
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-indicator"
+            <ul className="flex items-center gap-1">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
                       className={clsx(
-                        "absolute inset-0 transition-colors duration-300 rounded-full",
-                        link.href === "/xr" 
-                          ? "bg-accent-violet/10 dark:bg-accent-violet/10 group-hover:bg-accent-violet/20" 
-                          : "bg-accent-teal/10 dark:bg-accent-teal/10 group-hover:bg-accent-teal/20"
+                        "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center",
+                        isActive 
+                          ? (link.href === "/xr" ? "text-accent-violet font-medium" : "text-accent-teal font-medium")
+                          : (link.href === "/xr" ? "text-muted hover:text-accent-violet" : "text-muted hover:text-accent-teal")
                       )}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
-                      }}
-                    />
-                  )}
+                    >
+                      <span className="relative z-10">{link.label}</span>
+                      
+                      {isActive && (
+                        <motion.div
+                          layoutId="nav-indicator"
+                          className={clsx(
+                            "absolute inset-0 transition-colors duration-300 rounded-full",
+                            link.href === "/xr" 
+                              ? "bg-accent-violet/10 dark:bg-accent-violet/10 group-hover:bg-accent-violet/20" 
+                              : "bg-accent-teal/10 dark:bg-accent-teal/10 group-hover:bg-accent-teal/20"
+                          )}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                        />
+                      )}
 
-                  <div className={clsx(
-                    link.href === "/xr" ? "nav-film-scratch-violet" : "nav-film-scratch", 
-                    isActive && "animate-scratch-once"
-                  )} />
-                </Link>
-              );
-            })}
+                      <div className={clsx(
+                        link.href === "/xr" ? "nav-film-scratch-violet" : "nav-film-scratch", 
+                        isActive && "animate-scratch-once"
+                      )} />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
             
             <div className="w-px h-5 bg-border mx-2" />
             

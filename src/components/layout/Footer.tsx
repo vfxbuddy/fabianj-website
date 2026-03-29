@@ -29,31 +29,37 @@ export function Footer() {
           </div>
 
           {/* Contact Links */}
-          <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-8">
-            <a
-              href="mailto:hello@fabianJ.com"
-              className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
-            >
-              <Mail size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
-              hello@fabianJ.com
-            </a>
-            <a
-              href="tel:8182822680"
-              className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
-            >
-              <Phone size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
-              818.282.2680
-            </a>
-            <a
-              href="https://www.linkedin.com/in/fabian-jimenez-vfx/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
-            >
-              <Linkedin size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
-              LinkedIn
-            </a>
-          </div>
+          <ul className="flex flex-col items-center gap-3 sm:flex-row sm:gap-8">
+            <li>
+              <a
+                href="mailto:hello@fabianJ.com"
+                className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
+              >
+                <Mail size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
+                hello@fabianJ.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:8182822680"
+                className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
+              >
+                <Phone size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
+                818.282.2680
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/fabian-jimenez-vfx/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center gap-2 text-sm font-medium text-[var(--footer-text-muted)] transition-colors ${isXR ? 'hover:text-accent-violet' : 'hover:text-accent-teal'}`}
+              >
+                <Linkedin size={16} className={`text-[var(--footer-text-muted)] opacity-60 transition-colors ${isXR ? 'group-hover:text-accent-violet' : 'group-hover:text-accent-teal'}`} />
+                LinkedIn
+              </a>
+            </li>
+          </ul>
         </div>
 
         {/* Bottom Bar */}
@@ -61,10 +67,10 @@ export function Footer() {
           <p className="text-xs text-[var(--footer-text-muted)] opacity-60">
             © {new Date().getFullYear()} Fabian Jimenez — All Rights Reserved.
           </p>
-          <div className="flex space-x-6 text-xs text-[var(--footer-text-muted)] opacity-60">
-            <a href="#" className="hover:text-[var(--footer-text-main)] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[var(--footer-text-main)] transition-colors">Terms of Service</a>
-          </div>
+          <ul className="flex space-x-6 text-xs text-[var(--footer-text-muted)] opacity-60">
+            <li><a href="#" className="hover:text-[var(--footer-text-main)] transition-colors">Privacy Policy</a></li>
+            <li><a href="#" className="hover:text-[var(--footer-text-main)] transition-colors">Terms of Service</a></li>
+          </ul>
         </div>
       </div>
     </footer>

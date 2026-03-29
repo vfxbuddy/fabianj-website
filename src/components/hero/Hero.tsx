@@ -160,7 +160,7 @@ export function Hero() {
     <>
       <section id="hero-section" className="relative min-h-screen pt-32 pb-24 lg:pt-48 flex items-center justify-center overflow-hidden">
         {/* Background Autoplay Video — Muted, Looping, Cinematic */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden hero-video-bg">
           <iframe
             src="https://player.vimeo.com/video/952510254?background=1&autoplay=1&loop=1&muted=1&quality=720p&dnt=1#t=10s"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full"
@@ -168,9 +168,9 @@ export function Hero() {
             title="Background Showreel"
             style={{ border: 0 }}
           />
-          {/* Theme-aware overlay for readability */}
-          <div className="absolute inset-0 bg-background/75" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
+          {/* Theme-aware overlay for readability — lighter on mobile since glows are hidden */}
+          <div className="absolute inset-0 bg-background/40 sm:bg-background/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background sm:from-background/50" />
         </div>
 
         {/* Dynamic Background Glow following mouse softly */}
@@ -183,8 +183,8 @@ export function Hero() {
         
         {/* High-fidelity ambient glows */}
         <div className="absolute inset-x-0 top-0 h-full w-full overflow-hidden pointer-events-none z-[1]">
-          <div className="ambient-glow glow-teal top-[-10%] left-[-10%] w-[800px] h-[800px] animate-breathe" />
-          <div className="ambient-glow glow-violet bottom-[-20%] right-[-10%] w-[900px] h-[900px] animate-breathe" style={{ animationDelay: '2s' }} />
+          <div className="hidden sm:block ambient-glow glow-teal top-[-10%] left-[-10%] w-[800px] h-[800px] animate-breathe" />
+          <div className="hidden sm:block ambient-glow glow-violet bottom-[-20%] right-[-10%] w-[900px] h-[900px] animate-breathe" style={{ animationDelay: '2s' }} />
           
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>

@@ -27,7 +27,7 @@ export function BentoCard({ title, description, className, children, icon, delay
   }
 
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -71,7 +71,7 @@ export function BentoCard({ title, description, className, children, icon, delay
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(var(--accent-spotlight, 45, 212, 191), 0.15),
+              rgba(var(--accent-rgb), 0.15),
               transparent 80%
             )
           `,
@@ -101,6 +101,6 @@ export function BentoCard({ title, description, className, children, icon, delay
           </div>
         )}
       </div>
-    </motion.div>
+    </motion.article>
   );
 }

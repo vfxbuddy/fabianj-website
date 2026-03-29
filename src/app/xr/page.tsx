@@ -88,7 +88,7 @@ export default function XRPage() {
   };
 
   return (
-    <div className="pt-32 pb-24 min-h-screen relative overflow-hidden">
+    <main className="pt-32 pb-24 min-h-screen relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] bg-violet-500/[0.03] dark:bg-violet-500/10 rounded-full blur-[150px] pointer-events-none" />
       
@@ -124,9 +124,10 @@ export default function XRPage() {
           </motion.div>
 
           {/* Projects List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {xrProjects.map((project, i) => (
-              <motion.div variants={fadeUp} key={i} className="h-full">
+              <li key={i} className="h-full">
+              <motion.div variants={fadeUp} className="h-full">
                 <BentoCard
                   className="h-full hover:border-accent-violet/30 transition-colors cursor-pointer"
                   title={project.title}
@@ -164,8 +165,9 @@ export default function XRPage() {
                   </div>
                 </BentoCard>
               </motion.div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* Technical Case Studies Section */}
           <div className="mt-32">
@@ -267,6 +269,6 @@ export default function XRPage() {
         onClose={() => setGaussianModalOpen(false)}
         title="Clawcade Venue: Gaussian Splat"
       />
-    </div>
+    </main>
   );
 }

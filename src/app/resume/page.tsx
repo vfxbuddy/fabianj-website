@@ -110,7 +110,7 @@ export default function ResumePage() {
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.1, 0.4, 0.4, 0.1]);
 
   return (
-    <div ref={containerRef} className="pt-32 pb-32 min-h-screen relative overflow-hidden">
+    <main ref={containerRef} className="pt-32 pb-32 min-h-screen relative overflow-hidden">
 
 
 
@@ -282,7 +282,7 @@ export default function ResumePage() {
           <div className="space-y-24 md:space-y-32">
             {timelineData.map((item, index) => {
               return (
-                <div key={index} className="w-full">
+                <article key={index} className="w-full">
                   <FadeInCentered delay={0.1}>
                     <div className="relative w-full max-w-2xl group flex flex-col items-center px-4 md:px-0">
                       
@@ -323,7 +323,7 @@ export default function ResumePage() {
                       </div>
 
                     </FadeInCentered>
-                </div>
+                </article>
               );
             })}
           </div>
@@ -355,6 +355,6 @@ export default function ResumePage() {
         </div>
 
       </div>
-    </div>
+    </main>
   );
 }

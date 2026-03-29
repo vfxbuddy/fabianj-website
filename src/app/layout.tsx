@@ -72,13 +72,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SmoothScroll>
             <GlobalGrid />
             <Navbar />
-            <main>{children}</main>
+            <main className="bg-background">{children}</main>
             <Footer />
           </SmoothScroll>
         </ThemeProvider>
