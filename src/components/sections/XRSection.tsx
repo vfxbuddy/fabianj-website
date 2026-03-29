@@ -116,6 +116,7 @@ export function XRSection() {
               className="absolute -inset-px w-[calc(100%+2px)] h-[calc(100%+2px)] border-none"
               style={{ border: 0, background: '#000' }}
               allow="autoplay; fullscreen; picture-in-picture"
+              loading="lazy"
               allowFullScreen
               title="XR Spatial Design Showreel 2024"
             />
@@ -186,6 +187,7 @@ export function XRSection() {
                     className="absolute inset-0 w-full h-full"
                     style={{ border: 0 }}
                     allow="autoplay; fullscreen; picture-in-picture"
+                    loading="lazy"
                     allowFullScreen
                     title={galleryData.freelance[0].title}
                   />

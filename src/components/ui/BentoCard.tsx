@@ -48,6 +48,7 @@ export function BentoCard({ title, description, className, children, icon, delay
                 src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&dnt=1`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 mix-blend-screen"
                 allow="autoplay; fullscreen"
+                loading="lazy"
                 style={{ border: 0 }}
               />
             </div>

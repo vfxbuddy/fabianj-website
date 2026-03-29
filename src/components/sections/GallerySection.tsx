@@ -157,6 +157,7 @@ export function GallerySection() {
                 className="absolute -inset-px w-[calc(100%+2px)] h-[calc(100%+2px)] border-none"
                 style={{ border: 0, background: '#000' }}
                 allow="autoplay; fullscreen; picture-in-picture"
+                loading="lazy"
                 allowFullScreen
                 title="Fabian Jimenez - Compositing Showreel 2024"
               />
