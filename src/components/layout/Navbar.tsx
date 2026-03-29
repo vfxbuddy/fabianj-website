@@ -49,7 +49,15 @@ export function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      if ((window as any).lenis) {
+        // High-performance custom scroll that bypasses iOS Safari native bugs
+        (window as any).lenis.scrollTo(el, { offset: 0 });
+      } else {
+        // Fallback for when lenis is not ready
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
     setIsOpen(false);
   };
 

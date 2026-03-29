@@ -130,7 +130,6 @@
 /* Tailwind v4 Preflight handles normalization — no manual * reset needed */
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--color-background);
 }
 

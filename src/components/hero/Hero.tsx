@@ -280,6 +280,17 @@ export function Hero() {
               </button>
               <a
                 href="#resume"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById("resume");
+                  if (el) {
+                    if ((window as any).lenis) {
+                      (window as any).lenis.scrollTo(el, { offset: 0 });
+                    } else {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }
+                }}
                 className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-border bg-foreground/[0.03] px-8 py-4 text-sm font-semibold text-foreground transition-all hover:border-muted overflow-hidden"
               >
                 {/* Background Hover Glow */}
