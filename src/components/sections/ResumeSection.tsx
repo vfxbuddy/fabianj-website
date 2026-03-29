@@ -70,7 +70,7 @@ function FadeInCentered({ children, delay = 0 }: { children: React.ReactNode; de
       transition={{
         duration: 0.8,
         delay,
-        ease: [0.16, 1, 0.3, 1], // Custom sleek easing
+        ease: [0.16, 1, 0.3, 1],
         type: "spring",
         stiffness: 100,
         damping: 20
@@ -95,42 +95,29 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-
-
-export default function ResumePage() {
+export function ResumeSection() {
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: sectionRef,
     offset: ["start start", "end end"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.1, 0.4, 0.4, 0.1]);
 
   return (
-    <main ref={containerRef} className="pt-32 pb-32 min-h-screen relative overflow-hidden">
-
-
-
-      {/* Background Ambience / Glows */}
+    <section id="resume" ref={sectionRef} className="py-32 relative overflow-hidden">
+      {/* Background Ambience */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-teal-500/[0.03] dark:bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-500/[0.03] dark:bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
-          initial={{ 
-            opacity: 0, 
-            scale: 0.95, 
-            filter: isMobile ? "blur(0px)" : "blur(10px)" 
-          }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1, 
-            filter: "blur(0px)" 
-          }}
+          initial={{ opacity: 0, scale: 0.95, filter: isMobile ? "blur(0px)" : "blur(10px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-24 w-full"
         >
@@ -142,10 +129,10 @@ export default function ResumePage() {
             SINCE 2008
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-tight">
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-tight">
             16+ Years of <br />
             <span className="text-gradient-accent">Visual Excellence</span>
-          </h1>
+          </h2>
 
           <p className="text-xl text-muted font-light max-w-2xl mx-auto leading-relaxed mb-10">
             From blockbuster feature films to cutting-edge spatial computing. A journey of combining technical precision with creative vision.
@@ -160,7 +147,6 @@ export default function ResumePage() {
             Download Original PDF
           </Link>
 
-          {/* Original Scroll Placement */}
           <div className="relative h-24 mt-12 mb-12">
             <ScrollIndicator />
           </div>
@@ -171,10 +157,7 @@ export default function ResumePage() {
           <FadeInCentered delay={0.2}>
             <div className="relative group p-[1px] rounded-3xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-teal/20 via-cyan-500/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0" />
-
               <div className="glass-panel p-8 md:p-12 rounded-3xl border border-white/5 relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start text-left overflow-hidden">
-
-                {/* Background Logo Backdrop */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <Image
                     src="/refuge_vfx_logo.png"
@@ -183,11 +166,9 @@ export default function ResumePage() {
                     height={200}
                     className="absolute -top-4 -right-12 w-[80%] max-w-none opacity-[0.3] dark:opacity-[0.2]"
                   />
-                  {/* Theme-aware overlays for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/80" />
                 </div>
 
-                {/* Visual Accent */}
                 <div className="hidden md:flex flex-col items-center gap-4 mt-2 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-teal-500/10 dark:bg-gradient-to-br dark:from-teal-500 dark:to-cyan-400 flex items-center justify-center border border-teal-500/20 dark:border-none transition-colors">
                     <Sparkles className="text-foreground dark:text-background w-8 h-8 transition-colors" />
@@ -195,7 +176,6 @@ export default function ResumePage() {
                   <div className="w-px h-32 bg-gradient-to-b from-teal-500/50 to-transparent" />
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 relative z-10">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-teal/30 bg-accent-teal/10 text-xs font-semibold tracking-wider text-accent-teal mb-4 backdrop-blur-md transition-colors">
                     <span className="relative flex h-2 w-2">
@@ -204,12 +184,10 @@ export default function ResumePage() {
                     </span>
                     CURRENT HIGHLIGHT
                   </div>
-
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
                     Compositing Supervisor <br className="hidden md:block" /> at Refuge VFX
-                  </h2>
+                  </h3>
                   <p className="text-accent-teal font-medium mb-6">Refuge VFX • Nov 2025 — Present</p>
-
                   <p className="text-foreground/80 leading-relaxed max-w-2xl mb-6">
                     Thrilled to have joined the team at <strong>Refuge VFX</strong> as a Compositing Supervisor. Being part of such an incredibly talented group of artists has been an amazing experience.
                   </p>
@@ -222,15 +200,12 @@ export default function ResumePage() {
           </FadeInCentered>
         </div>
 
-        {/* Recent Highlight Section */}
+        {/* Recent Highlight — Wizard of Oz */}
         <div className="w-full max-w-4xl mx-auto mb-32 z-20">
           <FadeInCentered delay={0.2}>
             <div className="relative group p-[1px] rounded-3xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-teal/20 via-cyan-500/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-700 z-0" />
-
               <div className="glass-panel p-8 md:p-12 rounded-3xl border border-white/5 relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start text-left overflow-hidden">
-
-                {/* Background YouTube Video */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <iframe
                     src="https://www.youtube.com/embed/1ZTEajxD6EU?autoplay=1&mute=1&loop=1&playlist=1ZTEajxD6EU&controls=0&showinfo=0&rel=0&start=12"
@@ -239,34 +214,30 @@ export default function ResumePage() {
                     title="Wizard of Oz Sphere Project"
                     style={{ border: 0 }}
                   />
-                  {/* Theme-aware overlays for text readability */}
                   <div className="absolute inset-0 bg-background/75" />
                   <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
                 </div>
 
-                {/* Visual Accent */}
                 <div className="hidden md:flex flex-col items-center gap-4 mt-2 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-teal-500/10 dark:bg-gradient-to-br dark:from-teal-500 dark:to-cyan-400 flex items-center justify-center border border-teal-500/20 dark:border-none transition-colors">
                     <Sparkles className="text-foreground dark:text-background w-8 h-8 transition-colors" />
                   </div>
                   <div className="w-px h-32 bg-gradient-to-b from-teal-500/50 to-transparent" />
                 </div>
-                {/* Content */}
+
                 <div className="flex-1 relative z-10">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-teal/30 bg-accent-teal/10 text-xs font-semibold tracking-wider text-accent-teal mb-4 backdrop-blur-md transition-colors">
                     RECENT HIGHLIGHT
                   </div>
-
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
                     The Wizard of Oz <br className="hidden md:block" /> at the Sphere
-                  </h2>
+                  </h3>
                   <p className="text-accent-teal font-medium mb-6">Digital Domain • March — Sept 2025</p>
-
                   <p className="text-foreground/80 leading-relaxed max-w-2xl mb-6">
                     Contributed as a Senior Compositor for the <em>Wizard of Oz</em> immersive experience at the Sphere in Las Vegas during my time at <strong>Digital Domain</strong>. This massive project required adapting to a custom <strong>16K compositing pipeline</strong> built specifically for the world's highest-resolution LED screen.
                   </p>
                   <p className="text-foreground/80 leading-relaxed max-w-2xl">
-                    With live-action plates requiring heavy, photoreal CG integration, we collaborated directly with Google to integrate their <strong>early-stage AI video models</strong> into our traditional VFX workflow. By leveraging advanced out-painting and in-painting techniques, we were able to seamlessly extend set environments and composite at an unprecedented immersive scale.
+                    With live-action plates requiring heavy, photoreal CG integration, we collaborated directly with Google to integrate their <strong>early-stage AI video models</strong> into our traditional VFX workflow.
                   </p>
                 </div>
               </div>
@@ -274,58 +245,47 @@ export default function ResumePage() {
           </FadeInCentered>
         </div>
 
-        {/* Timeline Section */}
+        {/* Timeline */}
         <div className="w-full relative">
-          {/* Vertical Track */}
           <div className="absolute left-[28px] md:left-1/2 top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2 hidden md:block" />
 
           <div className="space-y-24 md:space-y-32">
-            {timelineData.map((item, index) => {
-              return (
-                <article key={index} className="w-full">
-                  <FadeInCentered delay={0.1}>
-                    <div className="relative w-full max-w-2xl group flex flex-col items-center px-4 md:px-0">
-                      
-                      {/* Center Node - Pinned above card */}
-                      <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-background border border-border flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-border pointer-events-auto">
-                          <motion.div
-                            whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            {item.icon}
-                          </motion.div>
-                        </div>
+            {timelineData.map((item, index) => (
+              <article key={index} className="w-full">
+                <FadeInCentered delay={0.1}>
+                  <div className="relative w-full max-w-2xl group flex flex-col items-center px-4 md:px-0">
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-background border border-border flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 pointer-events-auto">
+                        <motion.div
+                          whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {item.icon}
+                        </motion.div>
                       </div>
+                    </div>
 
-                      {/* Centered Content Card */}
-                      <div className="glass-panel mt-4 md:mt-0 p-6 sm:p-8 md:p-10 transition-all duration-500 group-hover:-translate-y-2 w-full relative overflow-hidden border border-border group-hover:border-accent-teal/20 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+                    <div className="glass-panel mt-4 md:mt-0 p-6 sm:p-8 md:p-10 transition-all duration-500 group-hover:-translate-y-2 w-full relative overflow-hidden border border-border group-hover:border-accent-teal/20 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      <div className="absolute -inset-24 bg-foreground/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none" />
 
-                          {/* Dynamic top-edge beam */}
-                          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                          {/* Card Background Glow tied to hover */}
-                          <div className="absolute -inset-24 bg-foreground/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none" />
-
-                          <div className="relative z-10 text-center md:text-left">
-                            <div className="inline-block text-accent-teal font-mono text-xs sm:text-sm tracking-widest mb-4 px-3 py-1 rounded-full bg-accent-teal/10 border border-accent-teal/20">
-                              {item.year}
-                            </div>
-                            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2 tracking-tight">{item.role}</h3>
-                            <h4 className="text-muted font-medium mb-6 flex items-center justify-center md:justify-start gap-2 text-sm sm:text-base">
-                              <Briefcase size={16} className="text-muted" /> {item.company}
-                            </h4>
-                            <p className="text-muted leading-relaxed text-sm sm:text-base">
-                              {item.description}
-                            </p>
-                          </div>
+                      <div className="relative z-10 text-center md:text-left">
+                        <div className="inline-block text-accent-teal font-mono text-xs sm:text-sm tracking-widest mb-4 px-3 py-1 rounded-full bg-accent-teal/10 border border-accent-teal/20">
+                          {item.year}
                         </div>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2 tracking-tight">{item.role}</h3>
+                        <h4 className="text-muted font-medium mb-6 flex items-center justify-center md:justify-start gap-2 text-sm sm:text-base">
+                          <Briefcase size={16} className="text-muted" /> {item.company}
+                        </h4>
+                        <p className="text-muted leading-relaxed text-sm sm:text-base">
+                          {item.description}
+                        </p>
                       </div>
-
-                    </FadeInCentered>
-                </article>
-              );
-            })}
+                    </div>
+                  </div>
+                </FadeInCentered>
+              </article>
+            ))}
           </div>
         </div>
 
@@ -333,7 +293,7 @@ export default function ResumePage() {
         <div className="w-full mt-40">
           <FadeIn>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Core <span className="text-gradient-accent">Competencies</span></h2>
+              <h3 className="text-3xl font-bold text-foreground mb-4">Core <span className="text-gradient-accent">Competencies</span></h3>
               <p className="text-muted">The tools and methodologies I use to bring ideas to life.</p>
             </div>
 
@@ -353,8 +313,7 @@ export default function ResumePage() {
             </div>
           </FadeIn>
         </div>
-
       </div>
-    </main>
+    </section>
   );
 }

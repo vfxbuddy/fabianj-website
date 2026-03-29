@@ -1,15 +1,13 @@
 "use client";
-// Force fresh deployment to sync with local styles
 
 import { motion, Variants } from "framer-motion";
-import { ArrowUpRight, Box, Trophy, Sparkles, MonitorPlay, Video } from "lucide-react";
+import { ArrowUpRight, Box, Trophy, MonitorPlay, Video } from "lucide-react";
 import { useState } from "react";
 import { NotionModal } from "@/components/ui/NotionModal";
 import { GaussianModal } from "@/components/ui/GaussianModal";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import galleryData from "@/data/gallery.json";
-
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Project {
@@ -62,23 +60,23 @@ const xrProjects: Project[] = [
   }
 ];
 
-export default function XRPage() {
+export function XRSection() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [gaussianModalOpen, setGaussianModalOpen] = useState(false);
 
   const fadeUp: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20, 
-      filter: isMobile ? "blur(0px)" : "blur(10px)" 
+    hidden: {
+      opacity: 0,
+      y: 20,
+      filter: isMobile ? "blur(0px)" : "blur(10px)"
     },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)", 
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
@@ -88,21 +86,21 @@ export default function XRPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 min-h-screen relative overflow-hidden">
+    <section id="xr" className="py-32 relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] bg-violet-500/[0.03] dark:bg-violet-500/10 rounded-full blur-[150px] pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-          
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+
           <motion.div variants={fadeUp} className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-foreground/5 text-foreground dark:border-accent-violet/30 dark:bg-accent-violet/10 dark:text-accent-violet text-xs uppercase tracking-widest mb-6 transition-colors">
               <Box size={14} className="opacity-60 dark:opacity-100" /> Bezi • Blender • Figma
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
               <span className="text-foreground">XR Spatial </span>
               <span className="text-gradient-violet">Design</span>
-            </h1>
+            </h2>
             <p className="text-muted text-lg max-w-2xl mx-auto">
               Welcome to my XR portfolio. I create and prototype immersive augmented and mixed reality experiences bridging the physical and digital.
             </p>
@@ -111,7 +109,7 @@ export default function XRPage() {
             </div>
           </motion.div>
 
-          {/* Showreel - Vimeo Embed */}
+          {/* Showreel */}
           <motion.div variants={fadeUp} className="mb-24 mx-auto w-full max-w-4xl aspect-video rounded-3xl overflow-hidden bg-black relative">
             <iframe
               src="https://player.vimeo.com/video/952250990?title=0&byline=0&portrait=0&badge=0&dnt=1&transparent=0&share=0&pip=0&watch_later=0&vimeo_logo=0&buttons.like=0&buttons.watchlater=0&buttons.share=0&color=000000"
@@ -123,56 +121,56 @@ export default function XRPage() {
             />
           </motion.div>
 
-          {/* Projects List */}
+          {/* Projects Grid */}
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {xrProjects.map((project, i) => (
               <li key={i} className="h-full">
-              <motion.div variants={fadeUp} className="h-full">
-                <BentoCard
-                  className="h-full hover:border-accent-violet/30 transition-colors cursor-pointer"
-                  title={project.title}
-                  description={project.description}
-                  icon={project.badge ? <Trophy size={20} className="text-foreground dark:text-accent-violet" /> : <Box size={20} className="text-foreground dark:text-accent-violet" />}
-                  backgroundImage={project.image}
-                  vimeoId={project.vimeoId}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
-                      {project.tools.map((tool, j) => (
-                        <span key={j} className="text-[10px] uppercase tracking-wider text-foreground dark:text-accent-violet bg-foreground/5 border border-border px-2 py-1 rounded">
-                          {tool}
-                        </span>
-                      ))}
+                <motion.div variants={fadeUp} className="h-full">
+                  <BentoCard
+                    className="h-full hover:border-accent-violet/30 transition-colors cursor-pointer"
+                    title={project.title}
+                    description={project.description}
+                    icon={project.badge ? <Trophy size={20} className="text-foreground dark:text-accent-violet" /> : <Box size={20} className="text-foreground dark:text-accent-violet" />}
+                    backgroundImage={project.image}
+                    vimeoId={project.vimeoId}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-2">
+                        {project.tools.map((tool, j) => (
+                          <span key={j} className="text-[10px] uppercase tracking-wider text-foreground dark:text-accent-violet bg-foreground/5 border border-border px-2 py-1 rounded">
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); openProject(project); }}
+                          className="px-3 py-1.5 rounded-full bg-foreground/5 text-xs font-medium hover:bg-foreground/10 transition-colors border border-foreground/20 dark:border-accent-violet"
+                          style={{ color: 'var(--color-foreground)' }}
+                        >
+                          Preview
+                        </button>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-full hover:bg-foreground/10 text-foreground transition-colors"
+                        >
+                          <ArrowUpRight size={18} />
+                        </a>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openProject(project); }}
-                        className="px-3 py-1.5 rounded-full bg-foreground/5 text-xs font-medium hover:bg-foreground/10 transition-colors border border-foreground/20 dark:border-accent-violet"
-                        style={{ color: 'var(--color-foreground)' }}
-                      >
-                        Preview
-                      </button>
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                         className="p-2 rounded-full hover:bg-foreground/10 text-foreground transition-colors"
-                      >
-                        <ArrowUpRight size={18} />
-                      </a>
-                    </div>
-                  </div>
-                </BentoCard>
-              </motion.div>
+                  </BentoCard>
+                </motion.div>
               </li>
             ))}
           </ul>
 
-          {/* Technical Case Studies Section */}
+          {/* Technical Case Studies */}
           <div className="mt-32">
             <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-foreground tracking-tight whitespace-nowrap">Technical Case Studies</h2>
+              <h3 className="text-3xl font-bold text-foreground tracking-tight whitespace-nowrap">Technical Case Studies</h3>
               <div className="h-px flex-1 bg-gradient-to-r from-foreground/10 dark:from-accent-violet/30 to-transparent" />
             </motion.div>
 
@@ -191,7 +189,6 @@ export default function XRPage() {
                     allowFullScreen
                     title={galleryData.freelance[0].title}
                   />
-                  {/* Subtle Glow Overlay */}
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-accent-violet/5 to-transparent mix-blend-overlay" />
                 </div>
 
@@ -242,19 +239,17 @@ export default function XRPage() {
                     </div>
                   </div>
 
-                  {/* Aesthetic Background Detail */}
                   <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-accent-violet/5 rounded-full blur-[100px] pointer-events-none" />
                 </div>
               </div>
 
-              {/* Top Edge Beam */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-violet/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* Notion Modal */}
+      {/* Modals */}
       {activeProject && (
         <NotionModal
           isOpen={modalOpen}
@@ -263,12 +258,11 @@ export default function XRPage() {
           title={activeProject.title}
         />
       )}
-      {/* Gaussian Modal */}
       <GaussianModal
         isOpen={gaussianModalOpen}
         onClose={() => setGaussianModalOpen(false)}
         title="Clawcade Venue: Gaussian Splat"
       />
-    </main>
+    </section>
   );
 }

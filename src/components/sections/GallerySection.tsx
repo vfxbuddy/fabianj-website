@@ -6,7 +6,6 @@ import galleryData from "@/data/gallery.json";
 import { useEffect, useState } from "react";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Clapperboard } from "lucide-react";
-
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface PosterCardProps {
@@ -67,16 +66,6 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
 
   return (
     <>
-      <style jsx>{`
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-      `}</style>
       <div
         className="group/marquee relative w-full py-12"
         style={{
@@ -116,25 +105,25 @@ function Marquee({ items, direction = "left", speed = 40 }: MarqueeProps) {
   );
 }
 
-export default function GalleryPage() {
+export function GallerySection() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const fadeUp: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20, 
-      filter: isMobile ? "blur(0px)" : "blur(10px)" 
+    hidden: {
+      opacity: 0,
+      y: 20,
+      filter: isMobile ? "blur(0px)" : "blur(10px)"
     },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)", 
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
   return (
-    <main className="pt-32 pb-48 min-h-screen relative overflow-hidden">
+    <section id="gallery" className="pt-32 pb-48 relative overflow-hidden">
       {/* Background Ambience / Glows */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-teal-500/[0.03] dark:bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
       <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-violet-500/[0.03] dark:bg-violet-500/5 rounded-full blur-[150px] pointer-events-none z-0 mix-blend-screen" />
@@ -147,15 +136,14 @@ export default function GalleryPage() {
                 <Clapperboard size={14} /> Film • Television
               </div>
             </motion.div>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
               <span className="text-foreground">Production </span>
               <span className="text-teal-400 dark:bg-gradient-to-r dark:from-teal-400 dark:to-cyan-400 dark:bg-clip-text dark:text-transparent">Gallery</span>
-            </h1>
+            </h2>
             <p className="text-xl text-muted font-light max-w-2xl mx-auto leading-relaxed">
               VFX Credits for Screens Big, Small, and Everything In Between
             </p>
-            
-            {/* Original Scroll Placement */}
+
             <div className="relative h-24 mt-12">
               <ScrollIndicator />
             </div>
@@ -178,7 +166,7 @@ export default function GalleryPage() {
             <div className="mb-20 overflow-hidden">
               <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
                 <motion.div variants={fadeUp} className="flex items-center gap-4">
-                  <h2 className="text-3xl font-bold text-foreground tracking-tight">Feature Films</h2>
+                  <h3 className="text-3xl font-bold text-foreground tracking-tight">Feature Films</h3>
                   <div className="h-px flex-1 bg-gradient-to-r from-accent-teal/30 to-transparent" />
                 </motion.div>
               </div>
@@ -189,7 +177,7 @@ export default function GalleryPage() {
             <div className="mb-32 overflow-hidden">
               <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
                 <motion.div variants={fadeUp} className="flex items-center gap-4">
-                  <h2 className="text-3xl font-bold text-foreground tracking-tight">Television</h2>
+                  <h3 className="text-3xl font-bold text-foreground tracking-tight">Television</h3>
                   <div className="h-px flex-1 bg-gradient-to-r from-accent-violet/30 to-transparent" />
                 </motion.div>
               </div>
@@ -198,6 +186,6 @@ export default function GalleryPage() {
           </motion.div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

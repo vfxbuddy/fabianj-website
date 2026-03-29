@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -10,14 +8,14 @@ import clsx from "clsx";
 import { PersonalLogo } from "@/components/ui/PersonalLogo";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/xr", label: "XR" },
-  { href: "/resume", label: "Résumé" },
+  { href: "#home",    label: "Home",    sectionId: "hero-section" },
+  { href: "#gallery", label: "Gallery", sectionId: "gallery" },
+  { href: "#xr",      label: "XR",      sectionId: "xr" },
+  { href: "#resume",  label: "Résumé",  sectionId: "resume" },
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("hero-section");
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -25,6 +23,43 @@ export function Navbar() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Scroll spy — find which section is currently in view
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY + window.innerHeight * 0.35;
+      const sectionIds = navLinks.map((l) => l.sectionId);
+
+      let current = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) {
+          current = id;
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // set correct active on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth-scroll to section on nav click
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
+  };
+
+  const isXrActive = activeSection === "xr";
+
+  const navBorderColor = mounted && theme === "light"
+    ? "rgba(0, 0, 0, 0.3)"
+    : isXrActive
+      ? "rgba(139, 92, 246, 0.6)"
+      : "rgba(20, 184, 166, 0.6)";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none">
@@ -34,80 +69,72 @@ export function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mt-6 pointer-events-auto w-[95%] max-w-4xl relative"
       >
-        <nav 
+        <nav
           className="glass-pill backdrop-blur-xl flex items-center justify-between px-6 py-3"
-          style={{ 
-            "--nav-border-color": mounted && theme === "light"
-              ? "rgba(0, 0, 0, 0.3)" // Strong black border in light mode
-              : pathname === "/xr" 
-                ? "rgba(139, 92, 246, 0.6)" 
-                : "rgba(20, 184, 166, 0.6)"
-          } as React.CSSProperties}
+          style={{ "--nav-border-color": navBorderColor } as React.CSSProperties}
         >
           {/* Logo */}
-          <Link
-            href="/"
+          <a
+            href="#hero-section"
+            onClick={(e) => handleNavClick(e, "hero-section")}
             className="text-base font-bold tracking-[0.15em] text-foreground transition-opacity hover:opacity-80 flex items-center gap-2 group"
           >
-            <PersonalLogo 
-              themeColor={pathname === "/xr" ? "violet" : "teal"} 
+            <PersonalLogo
+              themeColor={isXrActive ? "violet" : "teal"}
               className="w-7 h-7"
             />
             FABIAN <span className={clsx(
               "font-normal transition-colors",
-              pathname === "/xr" 
-                ? "text-accent-violet group-hover:opacity-70" 
+              isXrActive
+                ? "text-accent-violet group-hover:opacity-70"
                 : "text-accent-teal group-hover:opacity-70"
             )}>JIMENEZ</span>
-          </Link>
+          </a>
 
           {/* Desktop Links & Tools */}
           <div className="hidden items-center gap-1 md:flex">
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = activeSection === link.sectionId;
                 return (
                   <li key={link.href}>
-                    <Link
+                    <a
                       href={link.href}
+                      onClick={(e) => handleNavClick(e, link.sectionId)}
                       className={clsx(
-                        "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center",
-                        isActive 
-                          ? (link.href === "/xr" ? "text-accent-violet font-medium" : "text-accent-teal font-medium")
-                          : (link.href === "/xr" ? "text-muted hover:text-accent-violet" : "text-muted hover:text-accent-teal")
+                        "group relative px-4 py-2 text-sm transition-all duration-300 rounded-full flex items-center justify-center cursor-pointer",
+                        isActive
+                          ? (link.sectionId === "xr" ? "text-accent-violet font-medium" : "text-accent-teal font-medium")
+                          : (link.sectionId === "xr" ? "text-muted hover:text-accent-violet" : "text-muted hover:text-accent-teal")
                       )}
                     >
                       <span className="relative z-10">{link.label}</span>
-                      
+
                       {isActive && (
                         <motion.div
                           layoutId="nav-indicator"
                           className={clsx(
                             "absolute inset-0 transition-colors duration-300 rounded-full",
-                            link.href === "/xr" 
-                              ? "bg-accent-violet/10 dark:bg-accent-violet/10 group-hover:bg-accent-violet/20" 
+                            link.sectionId === "xr"
+                              ? "bg-accent-violet/10 dark:bg-accent-violet/10 group-hover:bg-accent-violet/20"
                               : "bg-accent-teal/10 dark:bg-accent-teal/10 group-hover:bg-accent-teal/20"
                           )}
-                          transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 30,
-                          }}
+                          transition={{ type: "spring", stiffness: 400, damping: 30 }}
                         />
                       )}
 
                       <div className={clsx(
-                        link.href === "/xr" ? "nav-film-scratch-violet" : "nav-film-scratch", 
+                        link.sectionId === "xr" ? "nav-film-scratch-violet" : "nav-film-scratch",
                         isActive && "animate-scratch-once"
                       )} />
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
             </ul>
-            
+
             <div className="w-px h-5 bg-border mx-2" />
-            
+
             {/* Theme Toggle Desktop */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -123,17 +150,17 @@ export function Navbar() {
               )}
             </button>
 
-            <Link
-              href="/contact"
-              className="ml-2 rounded-full bg-foreground text-background px-5 py-2 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "contact")}
+              className="ml-2 rounded-full bg-foreground text-background px-5 py-2 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer"
             >
               Let's Talk
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Right Tools */}
           <div className="flex items-center gap-2 md:hidden">
-            {/* Theme Toggle Mobile */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full text-muted transition-colors hover:bg-foreground/10 hover:text-foreground"
@@ -156,79 +183,50 @@ export function Navbar() {
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
-        </nav>        {/* Mobile Menu - Mechanical Pivot Implementation */}
+        </nav>
+
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               key="mobile-menu"
-              initial={{ 
-                opacity: 0, 
-                rotateX: -90, 
-                transformOrigin: "top",
-                scale: 0.9
-              }}
-              animate={{ 
-                opacity: 1, 
-                rotateX: 0, 
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 150,
-                  damping: 20
-                }
-              }}
-              exit={{ 
-                opacity: 0, 
-                rotateX: -90, 
-                scale: 0.9,
-                transition: { 
-                  duration: 0.3, 
-                  ease: "easeInOut",
-                  delay: 0.2 // Wait for items to start exiting
-                }
-              }}
+              initial={{ opacity: 0, rotateX: -90, transformOrigin: "top", scale: 0.9 }}
+              animate={{ opacity: 1, rotateX: 0, scale: 1, transition: { type: "spring", stiffness: 150, damping: 20 } }}
+              exit={{ opacity: 0, rotateX: -90, scale: 0.9, transition: { duration: 0.3, ease: "easeInOut", delay: 0.2 } }}
               className="absolute top-full left-0 right-0 mx-auto mt-3 w-full p-4 flex flex-col pointer-events-auto border-[1px] border-[var(--nav-border-color)] bg-slate-950/50 backdrop-blur-xl backdrop-saturate-[180%] rounded-[2rem] shadow-[20px_40px_80px_-15px_rgba(0,0,0,0.8)]"
-              style={{ 
+              style={{
                 perspective: "1000px",
-                "--nav-border-color": mounted && theme === "light"
-                  ? "rgba(0, 0, 0, 0.3)"
-                  : pathname === "/xr" 
-                    ? "rgba(139, 92, 246, 0.6)" 
-                    : "rgba(20, 184, 166, 0.6)",
+                "--nav-border-color": navBorderColor,
                 "--nav-active-bg": mounted && theme === "light"
                   ? "rgba(0, 0, 0, 0.1)"
-                  : pathname === "/xr"
+                  : isXrActive
                     ? "rgba(139, 92, 246, 0.2)"
                     : "rgba(20, 184, 166, 0.2)"
               } as React.CSSProperties}
             >
               <div className="flex flex-col gap-1 p-2">
                 {navLinks.map((link, i) => {
-                  const isActive = pathname === link.href;
+                  const isActive = activeSection === link.sectionId;
                   return (
                     <motion.div
                       key={link.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 10 }}
-                      transition={{ 
-                        // Entrance: top-down (0.1, 0.15, 0.2...)
-                        // Exit: bottom-up sequence
-                        delay: isOpen ? (i * 0.05 + 0.1) : ((navLinks.length - i) * 0.05)
-                      }}
+                      transition={{ delay: isOpen ? (i * 0.05 + 0.1) : ((navLinks.length - i) * 0.05) }}
                     >
-                      <Link
+                      <a
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => handleNavClick(e, link.sectionId)}
                         className={clsx(
-                          "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right",
+                          "block rounded-xl px-4 py-3 text-sm font-medium transition-colors text-right cursor-pointer",
                           isActive
                             ? "bg-[var(--nav-active-bg)] text-foreground shadow-[0_0_15px_rgba(0,0,0,0.1)]"
                             : "text-muted hover:bg-foreground/5 hover:text-foreground"
                         )}
                       >
                         {link.label}
-                      </Link>
+                      </a>
                     </motion.div>
                   );
                 })}
@@ -239,18 +237,18 @@ export function Navbar() {
                   transition={{ delay: isOpen ? 0.35 : 0 }}
                   className="mt-4 pt-4 border-t border-white/10"
                 >
-                    <Link
-                      href="/contact"
-                      onClick={() => setIsOpen(false)}
-                      className={clsx(
-                        "block w-full text-right rounded-xl px-4 py-3 text-sm font-medium transition-colors",
-                        pathname === "/contact"
-                          ? "bg-white/20 text-white shadow-[0_0_15px_rgba(0,0,0,0.1)]"
-                          : "text-slate-400 hover:bg-white/5 hover:text-white"
-                      )}
-                    >
-                      Let's Talk
-                    </Link>
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleNavClick(e, "contact")}
+                    className={clsx(
+                      "block w-full text-right rounded-xl px-4 py-3 text-sm font-medium transition-colors cursor-pointer",
+                      activeSection === "contact"
+                        ? "bg-white/20 text-white shadow-[0_0_15px_rgba(0,0,0,0.1)]"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    )}
+                  >
+                    Let's Talk
+                  </a>
                 </motion.div>
               </div>
             </motion.div>

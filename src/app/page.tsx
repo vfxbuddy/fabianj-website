@@ -1,20 +1,25 @@
 import { Hero } from "@/components/hero/Hero";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { StudioMarquee } from "@/components/ui/StudioMarquee";
-import { Layers, MonitorPlay, Zap, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { GallerySection } from "@/components/sections/GallerySection";
+import { XRSection } from "@/components/sections/XRSection";
+import { ResumeSection } from "@/components/sections/ResumeSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Layers, MonitorPlay, Zap } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TextReveal } from "@/components/ui/TextReveal";
 
 export default function Home() {
   return (
     <>
+      {/* ─── Hero ─────────────────────────────────────────── */}
       <Hero />
       <StudioMarquee />
-      {/* Featured Supervisor Work */}
-      <section className="relative py-32 overflow-hidden border-t border-white/5">
+
+      {/* ─── Featured Supervision ────────────────────────── */}
+      <section id="home" className="relative py-32 overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50 pointer-events-none" />
-        
+
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <FadeIn direction="up">
             <header className="text-center max-w-2xl mx-auto mb-20">
@@ -37,7 +42,6 @@ export default function Home() {
                 backgroundImage="/images/shows/supergirl.jpg"
               />
             </li>
-            
             <li>
               <BentoCard
                 icon={<Layers size={24} />}
@@ -47,7 +51,6 @@ export default function Home() {
                 backgroundImage="/images/shows/batwoman.jpg"
               />
             </li>
-            
             <li>
               <BentoCard
                 icon={<Zap size={24} />}
@@ -58,28 +61,26 @@ export default function Home() {
               />
             </li>
           </ul>
-          
-          <FadeIn delay={0.4} direction="up">
-            <div className="mt-16 text-center">
-              <Link 
-                href="/gallery"
-                className="inline-flex items-center gap-2 text-accent-teal hover:opacity-70 font-semibold tracking-wide transition-colors group"
-              >
-                View Full Gallery
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
-      {/* Footer Banner */}
+      {/* ─── Gallery ──────────────────────────────────────── */}
+      <GallerySection />
+
+      {/* ─── XR ───────────────────────────────────────────── */}
+      <XRSection />
+
+      {/* ─── Resume ───────────────────────────────────────── */}
+      <ResumeSection />
+
+      {/* ─── Contact ──────────────────────────────────────── */}
+      <ContactSection />
+
+      {/* ─── CTA Banner ───────────────────────────────────── */}
       <section className="relative py-24 border-t border-white/10 bg-slate-950/50 overflow-hidden">
-        {/* Ambient Glows for footer */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="ambient-glow glow-teal top-[-50%] left-[20%] w-[600px] h-[600px] animate-breathe" style={{ animationDelay: '1s' }} />
         </div>
-
         <FadeIn direction="up" className="relative z-10 w-full">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-4xl font-bold text-foreground mb-8">
@@ -88,12 +89,12 @@ export default function Home() {
             <p className="text-xl text-muted mb-10 max-w-2xl mx-auto">
               Partner with me for your compositing needs. Together, we'll craft seamless VFX with inspiring creative leadership.
             </p>
-            <Link
-              href="/contact"
+            <a
+              href="#contact"
               className="inline-flex items-center justify-center rounded-full btn-primary px-10 py-5 text-lg font-bold text-background transition-transform hover:scale-105 shadow-[0_0_20px_rgba(20,184,166,0.2)] hover:shadow-[0_0_35px_rgba(20,184,166,0.5)]"
             >
               Let's work together
-            </Link>
+            </a>
           </div>
         </FadeIn>
       </section>
