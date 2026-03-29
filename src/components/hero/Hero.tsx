@@ -27,9 +27,13 @@ export function Hero() {
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
+    // Check screen size natively (runs only on client after hydration)
+    const isMobileDevice = window.matchMedia("(max-width: 768px)").matches;
+    const targetVideo = isMobileDevice ? "/videos/hero-bg-mobile.mp4" : "/videos/hero-bg-optimized.mp4";
+
     // Lazy-load video to satisfy PageSpeed "Enormous Network Payload" and "Render Blocking" audits
     const timer = setTimeout(() => {
-      setVideoSrc("/videos/hero-bg-optimized.mp4");
+      setVideoSrc(targetVideo);
       if (videoRef.current) {
         videoRef.current.load();
       }
