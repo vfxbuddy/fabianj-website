@@ -49,6 +49,7 @@
   --accent-teal: #000000;   /* Black accents in light mode */
   --accent-violet: #8B5CF6;
   --accent-rgb: 0, 0, 0;
+  
 }
 
 @theme inline {

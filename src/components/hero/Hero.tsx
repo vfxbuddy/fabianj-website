@@ -161,16 +161,25 @@ export function Hero() {
       <section id="hero-section" className="relative min-h-screen pt-32 pb-24 lg:pt-48 flex items-center justify-center overflow-hidden">
         {/* Background Autoplay Video — Muted, Looping, Cinematic */}
         <div className="absolute inset-0 z-0 overflow-hidden hero-video-bg">
-          <iframe
-            src="https://player.vimeo.com/video/952510254?background=1&autoplay=1&loop=1&muted=1&quality=720p&dnt=1#t=10s"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full"
-            allow="autoplay"
-            title="Background Showreel"
-            style={{ border: 0 }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/hero-poster.jpg"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full object-cover"
+          >
+            <source src="/videos/hero-bg-optimized.mp4" type="video/mp4" />
+          </video>
           {/* Theme-aware overlay for readability — lighter on mobile since glows are hidden */}
-          <div className="absolute inset-0 bg-background/40 sm:bg-background/75" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background sm:from-background/50" />
+          <div className={clsx(
+            "absolute inset-0 transition-opacity duration-500",
+            mounted && theme === "light" ? "bg-background/5 sm:bg-background/10" : "bg-background/40 sm:bg-background/75"
+          )} />
+          <div className={clsx(
+            "absolute inset-0 bg-gradient-to-b via-transparent to-background transition-opacity duration-500",
+            mounted && theme === "light" ? "from-background/0 sm:from-background/5" : "from-background/30 sm:from-background/50"
+          )} />
         </div>
 
         {/* Dynamic Background Glow following mouse softly */}
